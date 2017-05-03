@@ -1,3 +1,4 @@
+
 package Controller;
 
 import java.util.List;
@@ -11,27 +12,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import Entities.Users;
 import Repository.UsersRepository;
 
-
-
+@SessionAttributes
 @Controller
 public class HomeController {
-	
 	@Autowired
 	public UsersRepository userRepo;
-	
-//	@GetMapping("/home")
-//	public String home() {
-//		return "home";
-//	}
-	
+
 	@GetMapping("/home")
 	public String home(Model model) {
-		String header = "header_login";
-		model.addAttribute("header", header);
+		String login = "header_login";
+		model.addAttribute("login", login);
+
 		return "home";
 	}
 
@@ -41,7 +37,7 @@ public class HomeController {
 
 		HttpSession Session = request.getSession();
 		List<Users> user = userRepo.findByUsernameAndPassword(username, password);
-		
+
 		if (user != null) {
 			String fullname = user.get(0).getFullname();
 			String email = user.get(0).getEmail();
@@ -49,9 +45,7 @@ public class HomeController {
 			Session.setAttribute("email", email);
 			Session.setAttribute("fullname", fullname);
 			Session.setAttribute("password", password2);
-
 			String header = "header_login_success";
-
 			model.addAttribute("header", fullname);
 			model.addAttribute("header", header);
 			return "home";
@@ -62,38 +56,23 @@ public class HomeController {
 		}
 
 	}
-	
+
 	@GetMapping("/checkLogout")
-	public String checkLogout(Model model){
+	public String checkLogout(Model model) {
 		String header = "header_login";
 		model.addAttribute("header", header);
 		return "home";
 	}
-	
+
 	@GetMapping("/home_session")
-	public String checkSesion(Model model, HttpServletRequest request, HttpSession session){
-		String email = (String)session.getAttribute("email");
-		String password = (String)session.getAttribute("password");
+	public String checkSesion(Model model, HttpServletRequest request, HttpSession session) {
+		String email = (String) session.getAttribute("email");
+		String password = (String) session.getAttribute("password");
 		String login = "header_homeMember";
 		model.addAttribute("login", login);
 		model.addAttribute("email", email);
 		model.addAttribute("password", password);
 		return "home_session";
 	}
-	
-	@PostMapping("/signup")
-	public String signup(@RequestParam("username") String username, @RequestParam("password") String password,
-			@RequestParam("email") String email, @RequestParam("fullname") String fullname, @RequestParam("tel") String tel,
-			@RequestParam("address") String address, Model model) {
-		Users user = new Users();
-		user.setEmail(email);
-		user.setPassword(password);
-		user.setFullname(fullname);
-		user.setAddress(address);
-		user.setTel(tel);
-		user.setUsername(username);
-		user.setStatus("nomal");
-		userRepo.save(user);
-		return "home";
-	}
+
 }
