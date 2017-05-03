@@ -29,7 +29,7 @@ public class HomeController {
 
 		if (password.equals("1234") && email.equals("ford")) {
 
-			Session.setAttribute("email", email);
+			Session.setAttribute("emaikkl", email);
 			Session.setAttribute("password", password);
 
 			String login = "header_homeMember";
