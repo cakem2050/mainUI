@@ -10,7 +10,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">MOVIE Store</a>
+				<a class="navbar-brand" href="#">Brand</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -85,17 +85,17 @@
 							</div>
 						</div>
 						<div class="modal-body">
-							<form action="#">
+							<form action="/signup" method="post">
 								<div class="row">
 									<div class="form-group col-md-5 col-md-offset-2">
 										<label>ผู้ใช้งาน</label> <input type="text"
-											class="form-control" placeholder="Username" />
+											class="form-control" placeholder="Username" name="username"/>
 									</div>
 								</div>
 								<div class="row">
 									<div class="form-group  col-md-4 col-md-offset-2">
 										<label>รหัสผ่าน</label> <input type="password"
-											class="form-control" placeholder="Password" />
+											class="form-control" placeholder="Password" name="password"/>
 									</div>
 									<div class="form-group  col-md-4 ">
 
@@ -107,26 +107,26 @@
 								<div class="row">
 									<div class="form-group col-md-5 col-md-offset-2">
 										<label>Email Address</label> <input type="email"
-											class="form-control" placeholder="Email Address" />
+											class="form-control" placeholder="Email Address" name="email"/>
 									</div>
 								</div>
 								
 								<div class="row">
 									<div class="form-group  col-md-4 col-md-offset-2">
 										<label>ชื่อ-นามสกุล</label> <input type="text"
-											class="form-control" placeholder="ชื่อ-นามสกุล" />
+											class="form-control" placeholder="ชื่อ-นามสกุล" name="fullname"/>
 									</div>
 									<div class="form-group  col-md-4">
 
 										<label>เบอร์โทรศัพท์</label> <input type="text"
-											class="form-control" placeholder="xxxxxxxxxx" />
+											class="form-control" placeholder="xxxxxxxxxx" name="tel"/>
 									</div>
 								</div>
 								
 								<div class="row">
 									<div class="form-group col-md-8 col-md-offset-2">
 										<label>ที่อยู่</label>
-									    <textarea rows="" class="form-control" ></textarea>
+									    <textarea rows="" class="form-control" name="address"></textarea>
 									</div>
 								</div>
 

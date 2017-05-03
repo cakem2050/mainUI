@@ -1,14 +1,13 @@
-package movie;
+package Controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MovieMain {
+public class MainApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MovieMain.class, args);
-
+		SpringApplication.run(MainApp.class, args);
 	}
 
 }
