@@ -45,17 +45,16 @@
 							</div>
 						</div>
 						<div class="modal-body">
-							<form action="#" th:action="@{/greeting}" th:object="${login}"
-								method="post">
+							<form action="/checkLogin" method="post">
 								<div class="row">
 									<div class="form-group col-md-8 col-md-offset-2">
-										<input type="text" class="form-control" placeholder="Username" />
+										<input type="text" class="form-control" placeholder="Username" name="username"/>
 									</div>
 								</div>
 								<div class="row">
 									<div class="form-group  col-md-8 col-md-offset-2">
 										<input type="password" class="form-control"
-											placeholder="Password" />
+											placeholder="Password" name="password"/>
 									</div>
 								</div>
 								<div class="row">

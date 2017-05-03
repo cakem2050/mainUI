@@ -1,5 +1,7 @@
 package Controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -19,35 +21,36 @@ public class HomeController {
 	@Autowired
 	public UsersRepository userRepo;
 	
-	@GetMapping("/home")
-	public String home() {
-		return "home";
-	}
-	
 //	@GetMapping("/home")
-//	public String home(Model model) {
-//		String login = "header_login";
-//		model.addAttribute("login", login);
+//	public String home() {
 //		return "home";
 //	}
+	
+	@GetMapping("/home")
+	public String home(Model model) {
+		String header = "header_login";
+		model.addAttribute("header", header);
+		return "home";
+	}
 
 	@PostMapping("/checkLogin")
-	public String checkLogin(@RequestParam("email") String email, @RequestParam("password") String password,
+	public String checkLogin(@RequestParam("username") String username, @RequestParam("password") String password,
 			Model model, HttpServletRequest request, HttpSession session) {
 
-		HttpSession Session = request.getSession();
-
-		if (password.equals("1234") && email.equals("ford")) {
-
-			Session.setAttribute("emaikuuukl", email);
-			Session.setAttribute("password", password);
-
-			String login = "header_homeMember";
-			model.addAttribute("login", login);
+//		HttpSession Session = request.getSession();
+		List<Users> user = userRepo.findByUsernameAndPassword(username, password);
+		if (user != null) {
+//			String fullname = user.get(0).getFullname();
+//			Session.setAttribute("fullname", fullname);
+//			String fullname2 = (String)session.getAttribute("fullname");
+			String fullname2 = "qqq";
+			String header = "header_login_success";
+			model.addAttribute("fullname", fullname2);
+			model.addAttribute("header", header);
 			return "home";
 		} else {
-			String login = "header_login";
-			model.addAttribute("login", login);
+			String header = "header_login";
+			model.addAttribute("header", header);
 			return "home";
 		}
 
