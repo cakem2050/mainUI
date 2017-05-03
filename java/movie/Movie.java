@@ -1,4 +1,4 @@
-package movietest;
+package movie;
 
 import java.util.Date;
 import javax.persistence.Entity;
