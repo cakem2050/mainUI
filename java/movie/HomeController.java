@@ -32,7 +32,7 @@ public class HomeController {
 			Session.setAttribute("emaikkl", email);
 			Session.setAttribute("password", password);
 
-			String login = "header_homeMember";
+			String login = "header_homeMemberasdasdas";
 			model.addAttribute("login", login);
 			return "home";
 		} else {
