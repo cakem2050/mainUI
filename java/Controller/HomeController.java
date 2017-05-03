@@ -37,13 +37,13 @@ public class HomeController {
 	public String checkLogin(@RequestParam("username") String username, @RequestParam("password") String password,
 			Model model, HttpServletRequest request, HttpSession session) {
 
-//		HttpSession Session = request.getSession();
-		List<Users> user = userRepo.findByUsernameAndPassword(username, password);
+		HttpSession Session = request.getSession();
+		List<Users> user = userRepo.findByUsernameAndPasswordContains(username, password);
 		if (user != null) {
-//			String fullname = user.get(0).getFullname();
-//			Session.setAttribute("fullname", fullname);
-//			String fullname2 = (String)session.getAttribute("fullname");
-			String fullname2 = "qqq";
+			String fullname = user.get(0).getFullname();
+			Session.setAttribute("fullname", fullname);
+			String fullname2 = (String)session.getAttribute("fullname");
+			//String fullname2 = "qqq";
 			String header = "header_login_success";
 			model.addAttribute("fullname", fullname2);
 			model.addAttribute("header", header);
