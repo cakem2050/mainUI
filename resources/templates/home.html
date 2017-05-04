@@ -94,122 +94,37 @@
 										class="active"></li>
 									<li data-target="#carousel-example-generic" data-slide-to="1"></li>
 								</ol>
-
-								<!-- Wrapper for slides -->
-								<div class="carousel-inner" role="listbox">
-									<div class="item active">
-										<div class="row">
-											<div class="col-md-3">
-												<div class="thumbnail">
-													<img th:src="@{/assets/image/GuardiansOfTheGalaxy2.jpg}" alt="..." />
-													<div class="caption">
-														<h3>Thumbnail label</h3>
-														<p>...</p>
-														<p>
-															<a href="#" class="btn btn-primary" role="button">Button</a>
-															<a href="#" class="btn btn-default" role="button">Button</a>
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="thumbnail">
-													<img th:src="@{/assets/image/GuardiansOfTheGalaxy2.jpg}" alt="..." />
-													<div class="caption">
-														<h3>Thumbnail label</h3>
-														<p>...</p>
-														<p>
-															<a href="#" class="btn btn-primary" role="button">Button</a>
-															<a href="#" class="btn btn-default" role="button">Button</a>
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="thumbnail">
-													<img th:src="@{/assets/image/GuardiansOfTheGalaxy2.jpg}" alt="..." />
-													<div class="caption">
-														<h3>Thumbnail label</h3>
-														<p>...</p>
-														<p>
-															<a href="#" class="btn btn-primary" role="button">Button</a>
-															<a href="#" class="btn btn-default" role="button">Button</a>
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="thumbnail">
-													<img th:src="@{/assets/image/GuardiansOfTheGalaxy2.jpg}" alt="..." />
-													<div class="caption">
-														<h3>Thumbnail label</h3>
-														<p>...</p>
-														<p>
-															<a href="#" class="btn btn-primary" role="button">Button</a>
-															<a href="#" class="btn btn-default" role="button">Button</a>
-														</p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="row">
-											<div class="col-md-3">
-												<div class="thumbnail">
-													<img th:src="@{/assets/image/GuardiansOfTheGalaxy2.jpg}" alt="..." />
-													<div class="caption">
-														<h3>Thumbnail label</h3>
-														<p>...</p>
-														<p>
-															<a href="#" class="btn btn-primary" role="button">Button</a>
-															<a href="#" class="btn btn-default" role="button">Button</a>
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="thumbnail">
-													<img th:src="@{/assets/image/GuardiansOfTheGalaxy2.jpg}" alt="..." />
-													<div class="caption">
-														<h3>Thumbnail label</h3>
-														<p>...</p>
-														<p>
-															<a href="#" class="btn btn-primary" role="button">Button</a>
-															<a href="#" class="btn btn-default" role="button">Button</a>
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="thumbnail">
-													<img th:src="@{/assets/image/GuardiansOfTheGalaxy2.jpg}" alt="..." />
-													<div class="caption">
-														<h3>Thumbnail label</h3>
-														<p>...</p>
-														<p>
-															<a href="#" class="btn btn-primary" role="button">Button</a>
-															<a href="#" class="btn btn-default" role="button">Button</a>
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="thumbnail">
-													<img th:src="@{/assets/image/GuardiansOfTheGalaxy2.jpg}" alt="..." />
-													<div class="caption">
-														<h3>Thumbnail label</h3>
-														<p>...</p>
-														<p>
-															<a href="#" class="btn btn-primary" role="button">Button</a>
-															<a href="#" class="btn btn-default" role="button">Button</a>
-														</p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
+								
+								
+								<div th:each="beer: ${brands}">
+								<span th:text="${beer}"></span>
 								</div>
+																
+								
+								
+								
+								<!-- Wrapper for slides -->
+								<div class="carousel-inner" role="listbox">		
+									
+										<div class="row">
+											<div th:each="list: ${action}"> class="col-md-3">
+												<div class="thumbnail">
+													<img th:src="@{/assets/image/{id}(id=${list.movie_name}).jpg}" alt="..." />
+													<div class="caption">
+														<h3>asfsf</h3>
+														<p>...</p>
+														<p>
+															<a href="#" class="btn btn-primary" role="button">Button</a>
+															<a href="#" class="btn btn-default" role="button">Button</a>
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+							
+								</div>
+								
+								
 								<!-- Controls -->
 								<div align="right">
 								<a class="btn btn-info">หนังทั้งหมด</a>

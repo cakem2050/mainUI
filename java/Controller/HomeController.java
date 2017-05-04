@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import Entities.Movie;
 import Entities.Users;
 import Entities.Ajaxlogin;
+import Repository.MovieRepository;
 import Repository.UsersRepository;
 
 @Controller
@@ -23,6 +25,9 @@ public class HomeController {
 
 	@Autowired
 	public UsersRepository userRepo;
+
+	@Autowired
+	public MovieRepository movieRepo;
 
 	// @GetMapping("/home")
 	// public String home() {
@@ -32,6 +37,7 @@ public class HomeController {
 	@GetMapping("/home")
 	public String home(Model model, HttpServletRequest request, HttpSession session) {
 		HttpSession Session = request.getSession();
+		List<Movie> listmovie = (List<Movie>) movieRepo.findAll();
 		if (Session.getAttribute("fullname") != null) {
 			String header = "header_login_success";
 			String fullname2 = (String) Session.getAttribute("fullname");
