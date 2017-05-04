@@ -17,15 +17,15 @@ import Repository.UsersRepository;
 
 @Controller
 public class HomeController {
-	
+
 	@Autowired
 	public UsersRepository userRepo;
-	
-//	@GetMapping("/home")
-//	public String home() {
-//		return "home";
-//	}
-	
+
+	// @GetMapping("/home")
+	// public String home() {
+	// return "home";
+	// }
+
 	@GetMapping("/home")
 	public String home(Model model) {
 		String header = "header_login";
@@ -37,13 +37,13 @@ public class HomeController {
 	public String checkLogin(@RequestParam("username") String username, @RequestParam("password") String password,
 			Model model, HttpServletRequest request, HttpSession session) {
 
-//		HttpSession Session = request.getSession();
-		List<Users> user = userRepo.findByUsernameAndPassword(username, password);
+		HttpSession Session = request.getSession();
+		List<Users> user = userRepo.findByUsernameAndPasswordContains(username, password);
 		if (user != null) {
-//			String fullname = user.get(0).getFullname();
-//			Session.setAttribute("fullname", fullname);
-//			String fullname2 = (String)session.getAttribute("fullname");
-			String fullname2 = "qqq";
+			String fullname = user.get(0).getFullname();
+			Session.setAttribute("fullname", fullname);
+			String fullname2 = (String) session.getAttribute("fullname");
+			// String fullname2 = "qqq";
 			String header = "header_login_success";
 			model.addAttribute("fullname", fullname2);
 			model.addAttribute("header", header);
@@ -55,22 +55,30 @@ public class HomeController {
 		}
 
 	}
-	
+
+	@GetMapping("/checkLogout")
+	public String checkLogout(Model model, HttpServletRequest request, HttpSession session) {
+		request.getSession().removeAttribute("fullname");
+		String header = "header_login";
+		model.addAttribute("header", header);
+		return "home";
+	}
+
 	@GetMapping("/home_session")
-	public String checkSesion(Model model, HttpServletRequest request, HttpSession session){
-		String email = (String)session.getAttribute("email");
-		String password = (String)session.getAttribute("password");
+	public String checkSesion(Model model, HttpServletRequest request, HttpSession session) {
+		String email = (String) session.getAttribute("email");
+		String password = (String) session.getAttribute("password");
 		String login = "header_homeMember";
 		model.addAttribute("login", login);
 		model.addAttribute("email", email);
 		model.addAttribute("password", password);
 		return "home_session";
 	}
-	
+
 	@PostMapping("/signup")
 	public String signup(@RequestParam("username") String username, @RequestParam("password") String password,
-			@RequestParam("email") String email, @RequestParam("fullname") String fullname, @RequestParam("tel") String tel,
-			@RequestParam("address") String address, Model model) {
+			@RequestParam("email") String email, @RequestParam("fullname") String fullname,
+			@RequestParam("tel") String tel, @RequestParam("address") String address, Model model) {
 		Users user = new Users();
 		user.setEmail(email);
 		user.setPassword(password);

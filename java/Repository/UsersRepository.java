@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import Entities.Users;
 
 public interface UsersRepository extends CrudRepository<Users, Integer> {
-	List<Users> findByUsernameAndPassword(String username,String password);
+	List<Users> findByUsernameAndPasswordContains(String username,String password);
 }
