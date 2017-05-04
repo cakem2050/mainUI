@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<object th:include="headinclude :: head" th:remove="tag" />
+</head>
+<body>
+	<div></div>
+
+	<div th:include="${header}"></div>
+	<section class="main">
+		<!-- Start container -->
+		<div class="container">
+			<!-- Pattern -->
+			<div class="mainmargin">
+				<!-- Start Row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="thumbnail">
+							<ul class="nav nav-tabs">
+								<li role="presentation" class="active"><a
+									style="background-color: rgb(255, 175, 54); color: white;"><b>เพิ่มหนัง</b></a></li>
+							</ul>
+							<!-- Row Image -->
+							<div class="row" style="margin-top: 20px;">
+								<div class="col-md-5 col-md-offset-1">
+									<div class="thumbnail" style="height: 450px;">
+										<img alt="" id="blah" style="width: 100%;height: 100%;" />
+									</div>
+								</div>
+								<div class="col-md-5">
+
+									<form  method="post">
+										<div class="row">
+											<div class="form-group col-md-7 col-md-offset-1">
+												<label>ชื่อหนัง</label> <input
+													type="text" class="form-control" name="username" />
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="form-group col-md-3 col-md-offset-1">
+												<label>ราคา</label> <input
+													type="number" class="form-control" name="username" />
+											</div>
+											<div class="form-group col-md-7 col-md-offset-1">
+												<label>ประเภทหนัง</label> 
+												<select class="form-control">
+													<option>หนังผู้ใหญ่</option>
+													<option>การ์ตูน</option>
+													<option>ดราม่า</option>
+												</select>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-group col-md-7 col-md-offset-1">
+												<label>รูปภาพ</label> 
+												<input type="file" class="form-control"  id="imgInp" name="product_image" onchange='openFile()' />
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-group col-md-11 col-md-offset-1">
+												<label>รายละเอียด</label>
+												<textarea rows="" class="form-control" name="address"></textarea>
+											</div>
+										</div>
+
+										<div class="row">
+											<div align="center">
+												<button type="submit" class="btn btn-info" style="width: 150px;">เพิ่ม</button>
+												<button type="button" class="btn btn-danger" style="width: 150px;">ยกเลิก</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<!-- End Row Image -->
+						</div>
+					</div>
+				</div>
+				<!-- End Pattern -->
+			</div>
+			<!-- End Container -->
+		</div>
+	</section>
+	<div th:include="footer"></div>
+</body>
+</html>

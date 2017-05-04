@@ -37,9 +37,15 @@ public class HomeController {
 	@GetMapping("/home")
 	public String home(Model model, HttpServletRequest request, HttpSession session) {
 		HttpSession Session = request.getSession();
-		List<Movie> listmovie = (List<Movie>) movieRepo.findAll();
+		String page = "home";
 		if (Session.getAttribute("fullname") != null) {
-			String header = "header_login_success";
+			String header;
+			if(Session.getAttribute("status").equals("admin")){
+				page = "page_admin";
+				header = "header_login_admin";
+			}else{
+				header = "header_login_success";
+			}
 			String fullname2 = (String) Session.getAttribute("fullname");
 			model.addAttribute("fullname", fullname2);
 			model.addAttribute("header", header);
@@ -47,7 +53,7 @@ public class HomeController {
 			String header = "header_login";
 			model.addAttribute("header", header);
 		}
-		return "home";
+		return page;
 	}
 	//
 	// if (userRepo.findByUsernameAndPasswordContains(username, password) !=
@@ -74,6 +80,8 @@ public class HomeController {
 		} else {
 			obj.setMassage1("success");
 			String fullname = user.get(0).getFullname();
+			String status = user.get(0).getStatus();
+			Session.setAttribute("status", status);
 			Session.setAttribute("fullname", fullname);
 		}
 		return obj;

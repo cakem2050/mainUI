@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<object th:include="headinclude :: head" th:remove="tag" />
+</head>
+<body>
+	<div></div>
+
+	<div th:include="${header}"></div>
+	<section class="main">
+		<!-- Start container -->
+		<div class="container">
+			<!-- Pattern -->
+			<div class="mainmargin">
+				<!-- Start Row -->
+				<div class="row"></div>
+				<!-- End Pattern -->
+			</div>
+			<!-- End Container -->
+		</div>
+	</section>
+	<div th:include="footer"></div>
+</body>
+</html>

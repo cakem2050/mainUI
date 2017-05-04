@@ -10,17 +10,17 @@ import javax.persistence.Id;
 public class Movie {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int movie_id;
+	private Integer movie_id;
 	private String movie_name;
 	private String movie_detail;
 	private Date movie_date;
 	private int movie_price;
 	private int movie_status;
 	private int type_movie;
-	public int getMovie_id() {
+	public Integer getMovie_id() {
 		return movie_id;
 	}
-	public void setMovie_id(int movie_id) {
+	public void setMovie_id(Integer movie_id) {
 		this.movie_id = movie_id;
 	}
 	public String getMovie_name() {
@@ -59,5 +59,6 @@ public class Movie {
 	public void setType_movie(int type_movie) {
 		this.type_movie = type_movie;
 	}
+	
 	
 }
