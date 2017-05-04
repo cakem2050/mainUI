@@ -1,5 +1,6 @@
 package Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import Entities.Movie;
 import Entities.Users;
+import Entities.Ajaxlogin;
 import Repository.MovieRepository;
 import Repository.UsersRepository;
 
@@ -27,33 +30,58 @@ public class HomeController {
 	public MovieRepository movieRepo;
 
 	@GetMapping("/home")
-	public String home(Model model) {
-		String header = "header_login";
-		List<Movie> action = movieRepo.getMovie();
-		model.addAttribute("action", action);
-		model.addAttribute("header", header);
-		return "home";
+	public String home(Model model, HttpServletRequest request, HttpSession session) {
+		HttpSession Session = request.getSession();
+		String page = "home";
+		if (Session.getAttribute("fullname") != null) {
+			String header;
+			if(Session.getAttribute("status").equals("admin")){
+				page = "page_admin";
+				header = "header_login_admin";
+			}else{
+				header = "header_login_success";
+			}
+			String fullname2 = (String) Session.getAttribute("fullname");
+			model.addAttribute("fullname", fullname2);
+			model.addAttribute("header", header);
+		} else {
+			String header = "header_login";
+			List<Movie> movie = movieRepo.getMovie();
+			model.addAttribute("movieNew", movie);
+			model.addAttribute("header", header);
+		}
+		return page;
 	}
+	//
+	// if (userRepo.findByUsernameAndPasswordContains(username, password) !=
+	// null) {
+	// String fullname = user.get(0).getFullname();
+	// Session.setAttribute("fullname", fullname);
+	// obj.setMassage1("success");
+	// } else{
+	// obj.setMassage1("error");
+	// obj.setMassage2("Username or Password incorrect");
+	// }
 
 	@PostMapping("/checkLogin")
-	public String checkLogin(@RequestParam("username") String username, @RequestParam("password") String password,
-			Model model, HttpServletRequest request, HttpSession session) {
+	public @ResponseBody Ajaxlogin checkLogin(@RequestParam("username") String username,
+			@RequestParam("password") String password, Model model, HttpServletRequest request, HttpSession session) {
+
+		Ajaxlogin obj = new Ajaxlogin();
 
 		HttpSession Session = request.getSession();
 		List<Users> user = userRepo.findByUsernameAndPasswordContains(username, password);
-		if (user != null) {
-			String fullname = user.get(0).getFullname();
-			Session.setAttribute("fullname", fullname);
-			String fullname2 = (String) session.getAttribute("fullname");
-			String header = "header_login_success";
-			model.addAttribute("fullname", fullname2);
-			model.addAttribute("header", header);
-			return "home";
+		if (user.isEmpty()) {
+			obj.setMassage1("error");
+			obj.setMassage2("Username or Password incorrect");
 		} else {
-			String header = "header_login";
-			model.addAttribute("header", header);
-			return "home";
+			obj.setMassage1("success");
+			String fullname = user.get(0).getFullname();
+			String status = user.get(0).getStatus();
+			Session.setAttribute("status", status);
+			Session.setAttribute("fullname", fullname);
 		}
+		return obj;
 
 	}
 

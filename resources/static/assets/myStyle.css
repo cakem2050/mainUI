@@ -23,7 +23,7 @@ section.main{
     font-size: 24px;
 }
 .navbar-brand,
-.navbar-nav li a,
+.navbar-nav li .tag-A,
 .navbar-right .inline{
     line-height: 115px;
     height: 95px;
@@ -58,4 +58,7 @@ section.main{
 }
 .profile{
 	margin-top: 15px;
+}
+.display-hidden{
+	display:none;
 }

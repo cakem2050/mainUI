@@ -107,7 +107,7 @@
 								<div class="carousel-inner" role="listbox">		
 									<div class="item active">
 										<div class="row">
-											<div th:each="list,aStart: ${action}" th:if="${aStart.index lt 4}"  class="col-md-3">
+											<div th:each="list,aStart: ${movieNew}" th:if="${aStart.index lt 4}"  class="col-md-3">
 												<div class="thumbnail">
 													<img th:src="${list.movie_img}+.jpg" alt="..." />
 													<div class="caption">
