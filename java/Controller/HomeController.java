@@ -1,5 +1,6 @@
 package Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import Entities.Users;
+import Entities.Ajaxlogin;
 import Repository.UsersRepository;
 
 @Controller
@@ -27,32 +30,47 @@ public class HomeController {
 	// }
 
 	@GetMapping("/home")
-	public String home(Model model) {
-		String header = "header_login";
-		model.addAttribute("header", header);
-		return "home";
-	}
-
-	@PostMapping("/checkLogin")
-	public String checkLogin(@RequestParam("username") String username, @RequestParam("password") String password,
-			Model model, HttpServletRequest request, HttpSession session) {
-
+	public String home(Model model, HttpServletRequest request, HttpSession session) {
 		HttpSession Session = request.getSession();
-		List<Users> user = userRepo.findByUsernameAndPasswordContains(username, password);
-		if (user != null) {
-			String fullname = user.get(0).getFullname();
-			Session.setAttribute("fullname", fullname);
-			String fullname2 = (String) session.getAttribute("fullname");
-			// String fullname2 = "qqq";
+		if (Session.getAttribute("fullname") != null) {
 			String header = "header_login_success";
+			String fullname2 = (String) Session.getAttribute("fullname");
 			model.addAttribute("fullname", fullname2);
 			model.addAttribute("header", header);
-			return "home";
 		} else {
 			String header = "header_login";
 			model.addAttribute("header", header);
-			return "home";
 		}
+		return "home";
+	}
+	//
+	// if (userRepo.findByUsernameAndPasswordContains(username, password) !=
+	// null) {
+	// String fullname = user.get(0).getFullname();
+	// Session.setAttribute("fullname", fullname);
+	// obj.setMassage1("success");
+	// } else{
+	// obj.setMassage1("error");
+	// obj.setMassage2("Username or Password incorrect");
+	// }
+
+	@PostMapping("/checkLogin")
+	public @ResponseBody Ajaxlogin checkLogin(@RequestParam("username") String username,
+			@RequestParam("password") String password, Model model, HttpServletRequest request, HttpSession session) {
+
+		Ajaxlogin obj = new Ajaxlogin();
+
+		HttpSession Session = request.getSession();
+		List<Users> user = userRepo.findByUsernameAndPasswordContains(username, password);
+		if (user.isEmpty()) {
+			obj.setMassage1("error");
+			obj.setMassage2("Username or Password incorrect");
+		} else {
+			obj.setMassage1("success");
+			String fullname = user.get(0).getFullname();
+			Session.setAttribute("fullname", fullname);
+		}
+		return obj;
 
 	}
 

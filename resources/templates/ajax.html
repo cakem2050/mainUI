@@ -1,25 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org">
 <head>
-<meta charset="UTF-8" />
-<title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<object th:include="headinclude :: head" th:remove="tag" />
 </head>
 <body>
-<button id="btn">คลิก</button>
+<div th:include="header_login_admin"></div>
+<button id="btn">��ԡ</button>
 <script>
-$(document).ready(function(){
-	$("#btn").click(function(){
-		$.ajax({
-            url : 'ajaxtest',
-            success : function(data) {
-
-        		alert("post");
-                alert(data);
-            }
-        });
-    });
-});
 </script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

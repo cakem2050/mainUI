@@ -10,16 +10,17 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Brand</a>
+				<a class="navbar-brand" href="#"><span
+					style="color: rgb(241, 116, 14);"><b>MOVIE</b></span>Store</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">หน้าหลัก<span
+					<li class="active"><a class="tag-A" href="#">หน้าหลัก<span
 							class="sr-only">(current)</span></a></li>
-					<li><a href="#">Link</a></li>
+					<li><a class="tag-A" href="#">Link</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<form class="navbar-form navbar-left inline">
@@ -45,16 +46,25 @@
 							</div>
 						</div>
 						<div class="modal-body">
-							<form action="/checkLogin" method="post">
+							<form id="fm_click_login">
 								<div class="row">
 									<div class="form-group col-md-8 col-md-offset-2">
-										<input type="text" class="form-control" placeholder="Username" name="username"/>
+										<input type="text" class="form-control" placeholder="Username"
+											name="username" required="required" />
 									</div>
 								</div>
 								<div class="row">
 									<div class="form-group  col-md-8 col-md-offset-2">
 										<input type="password" class="form-control"
-											placeholder="Password" name="password"/>
+											placeholder="Password" name="password" required="required" />
+									</div>
+								</div>
+								<div class="row">
+								<br />
+									<div align="center" id="box-status_login" class="display-hidden">
+										<div class="form-group  col-md-8 col-md-offset-2">
+											<div class="alert alert-danger" id="status_login" role="alert">...</div>
+										</div>
 									</div>
 								</div>
 								<div class="row">
@@ -87,53 +97,57 @@
 							<form action="/signup" method="post">
 								<div class="row">
 									<div class="form-group col-md-5 col-md-offset-2">
-										<label>ผู้ใช้งาน</label> <input type="text"
-											class="form-control" placeholder="Username" name="username"/>
+										<label>เธ�เธนเน�เน�เธ�เน�เธ�เธฒเธ�</label> <input type="text"
+											class="form-control" placeholder="Username" name="username" />
 									</div>
 								</div>
 								<div class="row">
 									<div class="form-group  col-md-4 col-md-offset-2">
-										<label>รหัสผ่าน</label> <input type="password"
-											class="form-control" placeholder="Password" name="password"/>
+										<label>เธฃเธซเธฑเธชเธ�เน�เธฒเธ�</label> <input type="password"
+											class="form-control" placeholder="Password" name="password" />
 									</div>
 									<div class="form-group  col-md-4 ">
 
-										<label>ยืนยันรหัสผ่าน</label> <input type="password"
-											class="form-control" placeholder="ConfirmPassword" />
+										<label>เธขเธทเธ�เธขเธฑเธ�เธฃเธซเธฑเธชเธ�เน�เธฒเธ�</label> <input
+											type="password" class="form-control"
+											placeholder="ConfirmPassword" />
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="form-group col-md-5 col-md-offset-2">
 										<label>Email Address</label> <input type="email"
-											class="form-control" placeholder="Email Address" name="email"/>
+											class="form-control" placeholder="Email Address" name="email" />
 									</div>
 								</div>
-								
+
 								<div class="row">
 									<div class="form-group  col-md-4 col-md-offset-2">
-										<label>ชื่อ-นามสกุล</label> <input type="text"
-											class="form-control" placeholder="ชื่อ-นามสกุล" name="fullname"/>
+										<label>เธ�เธทเน�เธญ-เธ�เธฒเธกเธชเธ�เธธเธฅ</label> <input
+											type="text" class="form-control"
+											placeholder="เธ�เธทเน�เธญ-เธ�เธฒเธกเธชเธ�เธธเธฅ"
+											name="fullname" />
 									</div>
 									<div class="form-group  col-md-4">
 
-										<label>เบอร์โทรศัพท์</label> <input type="text"
-											class="form-control" placeholder="xxxxxxxxxx" name="tel"/>
+										<label>เน€เธ�เธญเธฃเน�เน�เธ—เธฃเธจเธฑเธ�เธ—เน�</label> <input
+											type="text" class="form-control" placeholder="xxxxxxxxxx"
+											name="tel" />
 									</div>
 								</div>
-								
+
 								<div class="row">
 									<div class="form-group col-md-8 col-md-offset-2">
-										<label>ที่อยู่</label>
-									    <textarea rows="" class="form-control" name="address"></textarea>
+										<label>เธ—เธตเน�เธญเธขเธนเน�</label>
+										<textarea rows="" class="form-control" name="address"></textarea>
 									</div>
 								</div>
 
 								<div class="row">
 									<div align="center">
-										<button type="submit" class="btn btn-info">ยืนยัน</button>
+										<button type="submit" class="btn btn-info">เธขเธทเธ�เธขเธฑเธ�</button>
 										<button type="button" class="btn btn-danger"
-											data-dismiss="modal">ยกเลิก</button>
+											data-dismiss="modal">เธขเธ�เน€เธฅเธดเธ�</button>
 									</div>
 								</div>
 							</form>
