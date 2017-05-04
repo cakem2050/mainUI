@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import Entities.Movie;
 import Entities.Users;
+import Repository.MovieRepository;
 import Repository.UsersRepository;
 
 @Controller
@@ -20,6 +22,9 @@ public class HomeController {
 
 	@Autowired
 	public UsersRepository userRepo;
+
+	@Autowired
+	public MovieRepository movieRepo;
 
 	// @GetMapping("/home")
 	// public String home() {
@@ -29,6 +34,8 @@ public class HomeController {
 	@GetMapping("/home")
 	public String home(Model model) {
 		String header = "header_login";
+		List<Movie> action = movieRepo.getMovie();
+		model.addAttribute("action", action);
 		model.addAttribute("header", header);
 		return "home";
 	}
