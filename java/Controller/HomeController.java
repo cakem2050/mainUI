@@ -26,11 +26,6 @@ public class HomeController {
 	@Autowired
 	public MovieRepository movieRepo;
 
-	// @GetMapping("/home")
-	// public String home() {
-	// return "home";
-	// }
-
 	@GetMapping("/home")
 	public String home(Model model) {
 		String header = "header_login";
@@ -50,7 +45,6 @@ public class HomeController {
 			String fullname = user.get(0).getFullname();
 			Session.setAttribute("fullname", fullname);
 			String fullname2 = (String) session.getAttribute("fullname");
-			// String fullname2 = "qqq";
 			String header = "header_login_success";
 			model.addAttribute("fullname", fullname2);
 			model.addAttribute("header", header);

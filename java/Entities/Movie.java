@@ -15,7 +15,14 @@ public class Movie {
 	private String movie_detail;
 	private Date movie_date;
 	private int movie_price;
-	private int movie_status;
+	private String movie_status;
+	private String movie_img;
+	public String getMovie_img() {
+		return movie_img;
+	}
+	public void setMovie_img(String movie_img) {
+		this.movie_img = movie_img;
+	}
 	private int type_movie;
 	public int getMovie_id() {
 		return movie_id;
@@ -47,10 +54,10 @@ public class Movie {
 	public void setMovie_price(int movie_price) {
 		this.movie_price = movie_price;
 	}
-	public int getMovie_status() {
+	public String getMovie_status() {
 		return movie_status;
 	}
-	public void setMovie_status(int movie_status) {
+	public void setMovie_status(String movie_status) {
 		this.movie_status = movie_status;
 	}
 	public int getType_movie() {
