@@ -124,7 +124,7 @@
 									</div>
 									<div class="item">
 										<div class="row">
-											<div th:each="list,aStart: ${action}" th:if="${aStart.index gt 3}"  class="col-md-3">
+											<div th:each="list,aStart: ${movieNew}" th:if="${aStart.index gt 3}"  class="col-md-3">
 												<div class="thumbnail">
 													<img th:src="${list.movie_img}+.jpg" alt="..." />
 													<div class="caption">
