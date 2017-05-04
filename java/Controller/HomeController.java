@@ -46,6 +46,8 @@ public class HomeController {
 			model.addAttribute("header", header);
 		} else {
 			String header = "header_login";
+			List<Movie> movie = movieRepo.getMovie();
+			model.addAttribute("movieNew", movie);
 			model.addAttribute("header", header);
 		}
 		return page;
