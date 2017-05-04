@@ -105,13 +105,13 @@
 								
 								<!-- Wrapper for slides -->
 								<div class="carousel-inner" role="listbox">		
-									
+									<div class="item active">
 										<div class="row">
-											<div th:each="list: ${action}"> class="col-md-3">
+											<div th:each="list,aStart: ${action}" th:if="${aStart.index lt 4}"  class="col-md-3">
 												<div class="thumbnail">
-													<img th:src="@{/assets/image/{id}(id=${list.movie_name}).jpg}" alt="..." />
+													<img th:src="${list.movie_img}+.jpg" alt="..." />
 													<div class="caption">
-														<h3>asfsf</h3>
+														<h3 th:text="${list.movie_name}"></h3>
 														<p>...</p>
 														<p>
 															<a href="#" class="btn btn-primary" role="button">Button</a>
@@ -121,7 +121,24 @@
 												</div>
 											</div>
 										</div>
-							
+									</div>
+									<div class="item">
+										<div class="row">
+											<div th:each="list,aStart: ${action}" th:if="${aStart.index gt 3}"  class="col-md-3">
+												<div class="thumbnail">
+													<img th:src="${list.movie_img}+.jpg" alt="..." />
+													<div class="caption">
+														<h3 th:text="${list.movie_name}"></h3>
+														<p>...</p>
+														<p>
+															<a href="#" class="btn btn-primary" role="button">Button</a>
+															<a href="#" class="btn btn-default" role="button">Button</a>
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 								
 								

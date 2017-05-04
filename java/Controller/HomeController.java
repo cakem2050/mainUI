@@ -29,11 +29,6 @@ public class HomeController {
 	@Autowired
 	public MovieRepository movieRepo;
 
-	// @GetMapping("/home")
-	// public String home() {
-	// return "home";
-	// }
-
 	@GetMapping("/home")
 	public String home(Model model, HttpServletRequest request, HttpSession session) {
 		HttpSession Session = request.getSession();
