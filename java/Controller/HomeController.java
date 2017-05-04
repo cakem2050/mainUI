@@ -33,6 +33,9 @@ public class HomeController {
 	public String home(Model model, HttpServletRequest request, HttpSession session) {
 		HttpSession Session = request.getSession();
 		String page = "home";
+
+		List<Movie> movie = movieRepo.getMovie();
+		model.addAttribute("movieNew", movie);
 		if (Session.getAttribute("fullname") != null) {
 			String header;
 			if(Session.getAttribute("status").equals("admin")){
@@ -46,8 +49,6 @@ public class HomeController {
 			model.addAttribute("header", header);
 		} else {
 			String header = "header_login";
-			List<Movie> movie = movieRepo.getMovie();
-			model.addAttribute("movieNew", movie);
 			model.addAttribute("header", header);
 		}
 		return page;
