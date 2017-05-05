@@ -24,7 +24,7 @@ import Repository.MovieRepository;
 public class AdminController {
 
 	@Autowired
-	public MovieRepository movieRepo;
+	public MovieRepository mevieRepo;
 
 	@GetMapping("/UserManagement")
 	public String adminmanagement(Model model, HttpServletRequest request, HttpSession session) {
@@ -89,13 +89,13 @@ public class AdminController {
 		HttpSession Session = request.getSession();
 		if (Session.getAttribute("status").equals("admin")) {
 			header = "header_login_admin";
-			long count = movieRepo.count();
+			long count = mevieRepo.count();
 			model.addAttribute("count", (int) Math.ceil(count / 10));
 			List<Movie> movie = null;
 			if (keyword == null) {
-				movie = movieRepo.getMovielmit(pagelimit);
+				movie = mevieRepo.getMovielmit(pagelimit);
 			} else if (keyword != null) {
-				movie = movieRepo.searchMovie(keyword);
+				movie = mevieRepo.findByMovie_name(keyword);
 			}
 			model.addAttribute("allmovie", movie);
 		} else {
