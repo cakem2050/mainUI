@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<object th:include="headinclude :: head" th:remove="tag" />
+</head>
+<body>
+	<div></div>
+
+	<div th:include="${header}"></div>
+	<section class="main">
+		<!-- Start container -->
+		<div class="container">
+			<!-- Pattern -->
+			<div class="mainmargin">
+				<!-- Start Row -->
+				<div class="panel panel-primary">
+					<!-- Default panel contents -->
+					<div class="panel-heading">
+						<h4>จัดการหนัง</h4>
+					</div>
+					<div class="panel-body" align="right">
+						<form action="" class="form-inline">
+							<div class="col-md-12">
+								<form action="/ManagementMovie">
+									<input class="form-control" name="keyword" placeholder="ค้นหา" />
+									<button type="submit" class="btn btn-primary">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+								</form>
+							</div>
+						</form>
+					</div>
+
+					<!-- Table -->
+					<table class="table">
+						<tr>
+							<th>#</th>
+							<th class="col-md-2"></th>
+							<th>ชื่อหนัง</th>
+							<th>ราคา</th>
+							<th>ยอดขาย</th>
+							<th class="col-md-1"></th>
+							<th class="col-md-1"></th>
+						</tr>
+						<tr th:each="list,aStart:${allmovie}">
+							<td th:text="${list.movie_id}"></td>
+							<td><img src="/assets/image/GuardiansOfTheGalaxy2.jpg"
+								height="150px" alt="..." /></td>
+							<td th:text="${list.movie_name}"></td>
+							<td>250</td>
+							<td>1000</td>
+							<td><button class="btn btn-info">แก้ไข</button></td>
+							<td><button class="btn btn-danger">ลบ</button></td>
+						</tr>
+					</table>
+					<div align="center">
+						<nav aria-label="Page navigation">
+							<ul class="pagination">
+								<li><a th:if="${pagebefore != 0}"
+									th:href="'/ManagementMovie?pageindex='+${pagebefore}"
+									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								</a></li>
+								<object th:each="pagelist:${#numbers.sequence( 1, count)}"
+									th:remove="tag">
+									<li th:if="${pageactive == pagelist}" class="active"><a
+										th:href="'/ManagementMovie?pageindex='+${pagelist}"
+										th:text="${pagelist}"></a></li>
+									<li th:unless="${pageactive == pagelist}"><a
+										th:href="'/ManagementMovie?pageindex='+${pagelist}"
+										th:text="${pagelist}"></a></li>
+								</object>
+								<li><a th:if="${pagenext != 8}"
+									th:href="'/ManagementMovie?pageindex='+${pagenext}"
+									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+								</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+				<!-- End Pattern -->
+			</div>
+			<!-- End Container -->
+		</div>
+	</section>
+	<div th:include="footer"></div>
+</body>
+</html>
