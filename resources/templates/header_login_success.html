@@ -25,36 +25,41 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li>
 						<div align="right" class="profile">
-							<p class="user" th:text="${fullname}"></p>
-							<div class="form-group">
-								<label class="sr-only" for="exampleInputAmount">Amount
-									(in dollars)</label>
-								<div class="input-group">
-									<div class="input-group-addon">จำนวนเงิน</div>
-									<input type="text" class="form-control" id="exampleInputAmount"
-										placeholder="Amount" />
-									<div class="input-group-addon">฿</div>
-								</div>
+							<div class="input-group" style="width: 250px">
+								<div class="input-group-addon"
+									style="background-color: rgb(241, 116, 14); color: white;">จำนวนเงิน</div>
+								<input type="text" class="form-control" id="exampleInputAmount"
+									placeholder="500" disabled="disabled" />
+								<div class="input-group-addon">บาท</div>
 							</div>
-							<button class="btn btn-success btn-sm">
-								<span class="glyphicon glyphicon-bitcoin">เติมเงิน</span>
+							<span class="profile" th:text="${fullname}"> </span>
+							<button class="btn btn-primary dropdown-toggle" type="button"
+								data-toggle="dropdown">
+								<span class="glyphicon glyphicon-menu-hamburger"></span><span
+									class="caret"></span>
 							</button>
-							<button class="btn btn-primary">
-								<span class="glyphicon glyphicon-user"></span>
-							</button>
-							<a href="/checkLogout" class="btn btn-danger"><span
-								class="glyphicon glyphicon-log-out"></span></a>
-							<div class="dropdown">
-								<button class="btn btn-primary dropdown-toggle" type="button"
-									data-toggle="dropdown">
-									Dropdown Example <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">HTML</a></li>
-									<li><a href="#">CSS</a></li>
-									<li><a href="#">JavaScript</a></li>
-								</ul>
-							</div>
+							<ul class="dropdown-menu pull-left">
+								<li><a href="#">
+										<button class="btn btn-success ">
+											<span class="glyphicon glyphicon-bitcoin"></span>
+										</button>
+										<p style="display: inline">&nbsp;เติมเงิน</p>
+								</a></li>
+								<li><a href="#">
+										<button class="btn btn-primary">
+											<span class="glyphicon glyphicon-user"></span>
+										</button>
+										<p style="display: inline">&nbsp;ข้อมูลส่วนตัว</p>
+								</a></li>
+								<li><a href="/checkLogout">
+										<button onclick="location.href='/checkLogout'"
+											class="btn btn-danger">
+											<span class="glyphicon glyphicon-log-out"></span>
+										</button>
+										<p style="display: inline">&nbsp;ออกจะระบบ</p>
+								</a></li>
+							</ul>
+
 						</div>
 					</li>
 				</ul>

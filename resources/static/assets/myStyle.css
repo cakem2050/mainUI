@@ -45,7 +45,7 @@ section.main{
 	border-bottom: solid 10px;
 }
 .mainmargin{
-	margin:10px 0px 500px;
+	margin:10px 0px 10px;
 	padding:10px;
 	border-width:0.1em;
 	border: solid;
@@ -57,6 +57,8 @@ section.main{
 	color: white;
 }
 .profile{
+	color:white;
+	font-weight:bold;
 	margin-top: 15px;
 }
 .display-hidden{
