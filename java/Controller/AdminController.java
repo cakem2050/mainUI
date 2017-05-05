@@ -6,19 +6,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.repository.query.Param;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import Entities.Movie;
+import Repository.MovieRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import Entities.Type;
 import Repository.TypeRepository;
-
-import Entities.Movie;
-import Repository.MovieRepository;
 
 @Controller
 public class AdminController {
