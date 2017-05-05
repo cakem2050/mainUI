@@ -18,7 +18,7 @@
 						<div class="thumbnail">
 							<ul class="nav nav-tabs">
 								<li role="presentation" class="active"><a
-									style="background-color: rgb(255, 175, 54); color: white;"><b>เพิ่มหนัง</b></a></li>
+									style="background-color: rgb(255, 175, 54); color: white;"><b>เน€เธ�เธดเน�เธกเธซเธ�เธฑเธ�</b></a></li>
 							</ul>
 							<!-- Row Image -->
 							<div class="row" style="margin-top: 20px;">
@@ -29,45 +29,45 @@
 								</div>
 								<div class="col-md-5">
 
-									<form  method="post">
+									<form action="/setmovie"  method="post">
 										<div class="row">
 											<div class="form-group col-md-7 col-md-offset-1">
-												<label>ชื่อหนัง</label> <input
-													type="text" class="form-control" name="username" />
+												<label>เธ�เธทเน�เธญเธซเธ�เธฑเธ�</label> <input
+													type="text" class="form-control" name="namemovie" />
 											</div>
 										</div>
 										
 										<div class="row">
 											<div class="form-group col-md-3 col-md-offset-1">
-												<label>ราคา</label> <input
-													type="number" class="form-control" name="username" />
+												<label>เธฃเธฒเธ�เธฒ</label> <input
+													type="number" class="form-control" name="pricemovie" />
 											</div>
 											<div class="form-group col-md-7 col-md-offset-1">
-												<label>ประเภทหนัง</label> 
+												<label>เธ�เธฃเธฐเน€เธ เธ—เธซเธ�เธฑเธ�</label> 
 												<select class="form-control">
-													<option>หนังผู้ใหญ่</option>
-													<option>การ์ตูน</option>
-													<option>ดราม่า</option>
+													<span th:each="listType: ${type}">
+														<option name="type" th:value="${listType.type_id}" th:text="${listType.type_name}"></option>
+													</span>
 												</select>
 											</div>
 										</div>
 										<div class="row">
 											<div class="form-group col-md-7 col-md-offset-1">
-												<label>รูปภาพ</label> 
+												<label>เธฃเธนเธ�เธ เธฒเธ�</label> 
 												<input type="file" class="form-control"  id="imgInp" name="product_image" onchange='openFile()' />
 											</div>
 										</div>
 										<div class="row">
 											<div class="form-group col-md-11 col-md-offset-1">
-												<label>รายละเอียด</label>
-												<textarea rows="" class="form-control" name="address"></textarea>
+												<label>เธฃเธฒเธขเธฅเธฐเน€เธญเธตเธขเธ”</label>
+												<textarea rows="" class="form-control" name="descripmovie"></textarea>
 											</div>
 										</div>
 
 										<div class="row">
 											<div align="center">
-												<button type="submit" class="btn btn-info" style="width: 150px;">เพิ่ม</button>
-												<button type="button" class="btn btn-danger" style="width: 150px;">ยกเลิก</button>
+												<button type="submit" class="btn btn-info" style="width: 150px;">เน€เธ�เธดเน�เธก</button>
+												<button type="button" class="btn btn-danger" style="width: 150px;">เธขเธ�เน€เธฅเธดเธ�</button>
 											</div>
 										</div>
 									</form>
