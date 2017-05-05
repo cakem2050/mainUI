@@ -34,7 +34,7 @@ public class HomeController {
 		HttpSession Session = request.getSession();
 		String page = "home";
 
-		List<Movie> movie = movieRepo.getMovie();
+		List<Movie> movie = movieRepo.getNewMovie();
 		model.addAttribute("movieNew", movie);
 		if (Session.getAttribute("fullname") != null) {
 			String header;
