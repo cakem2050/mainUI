@@ -2,7 +2,9 @@ package Controller;
 
 import Entities.Ajaxlogin;
 import Entities.Movie;
+import Entities.Users;
 import Repository.MovieRepository;
+import Repository.UserRepository;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -39,6 +41,9 @@ public class AjaxController {
 	
 	@Autowired
 	public MovieRepository movieRepo;
+	
+	@Autowired
+	public UserRepository userRepo;
 
 	@GetMapping("/Movie")
 	public String movie(@Param("pageindex") Integer pageindex,Model model, HttpServletRequest request, HttpSession session) {
@@ -92,6 +97,34 @@ public class AjaxController {
 		model.addAttribute("movie",movie);
 		model.addAttribute("countpage",countpage);
 		return page;
+	}
+	
+	@GetMapping("/Profile")
+	public String profile(Model model,HttpServletRequest request){
+		String header;
+		HttpSession Session = request.getSession();
+		if (Session.getAttribute("status") != null) {
+			header = "header_login_success";
+		} else {
+			return "redirect:/home";
+		}
+		
+		Integer id = (Integer) Session.getAttribute("id");
+		Users user = userRepo.findOne(id);
+		String fullname2 = (String) Session.getAttribute("fullname");
+		int Money = (int) Session.getAttribute("money");
+		
+		model.addAttribute("user",user);
+		model.addAttribute("money", Money);
+		model.addAttribute("fullname", fullname2);
+		model.addAttribute("header", header);
+		model.addAttribute("header",header);
+		return "profile";
+	}
+	@GetMapping("/EditProfile")
+	public String editProfile(){
+		System.out.println("asd");
+		return "redirect:/Profile";
 	}
 
 }
