@@ -24,37 +24,41 @@
 							<div class="row" style="margin-top: 20px;">
 								<div class="col-md-5 col-md-offset-1">
 									<div class="thumbnail" style="height: 450px;">
-										<img alt="" id="blah" style="width: 100%;height: 100%;" />
+										<img alt="" id="blah" style="width: 100%; height: 100%;" />
 									</div>
 								</div>
 								<div class="col-md-5">
 
-									<form action="AddMovie"  method="post" enctype="multipart/form-data">
+
+									<form action="AddMovie" method="post"
+										enctype="multipart/form-data">
 										<div class="row">
 											<div class="form-group col-md-7 col-md-offset-1">
-												<label>เธ�เธทเน�เธญเธซเธ�เธฑเธ�</label> <input
-													type="text" class="form-control" name="namemovie" />
+												<label>เธ�เธทเน�เธญเธซเธ�เธฑเธ�</label> <input type="text"
+													class="form-control" name="namemovie" />
 											</div>
 										</div>
-										
+
 										<div class="row">
 											<div class="form-group col-md-3 col-md-offset-1">
-												<label>เธฃเธฒเธ�เธฒ</label> <input
-													type="number" class="form-control" name="pricemovie" />
+												<label>เธฃเธฒเธ�เธฒ</label> <input type="number"
+													class="form-control" name="pricemovie" />
 											</div>
 											<div class="form-group col-md-7 col-md-offset-1">
-												<label>เธ�เธฃเธฐเน€เธ เธ—เธซเธ�เธฑเธ�</label> 
-												<select class="form-control" name="type">
+												<label>เธ�เธฃเธฐเน€เธ เธ—เธซเธ�เธฑเธ�</label> <select
+													class="form-control" name="type">
 													<span th:each="listType: ${type}">
-														<option th:value="${listType.type_id}" th:text="${listType.type_name}"></option>
-													</span>
+														<option th:value="${listType.type_id}"
+															th:text="${listType.type_name}"></option>
+												</span>
 												</select>
 											</div>
 										</div>
 										<div class="row">
 											<div class="form-group col-md-7 col-md-offset-1">
-												<label>รูปภาพ</label>
-												<input type="file" class="form-control"  id="imgInp" name="file" onchange='openFile()' />
+												<label>รูปภาพ</label> <input type="file"
+													class="form-control" id="imgInp" name="file"
+													onchange='openFile()' />
 											</div>
 										</div>
 										<div class="row">
@@ -66,8 +70,10 @@
 
 										<div class="row">
 											<div align="center">
-												<button type="submit" class="btn btn-info" style="width: 150px;">เน€เธ�เธดเน�เธก</button>
-												<button type="button" class="btn btn-danger" style="width: 150px;">เธขเธ�เน€เธฅเธดเธ�</button>
+												<button type="submit" class="btn btn-info"
+													style="width: 150px;">เน€เธ�เธดเน�เธก</button>
+												<button type="button" class="btn btn-danger"
+													style="width: 150px;">เธขเธ�เน€เธฅเธดเธ�</button>
 											</div>
 										</div>
 									</form>

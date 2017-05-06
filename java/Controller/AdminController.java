@@ -191,6 +191,12 @@ public class AdminController {
 	userRepo.delete(id);
 	return "redirect:/UserManagement";
 	}
+	
+	@GetMapping("/deleteMovie")
+	public String deleteMovie(@RequestParam("id") Integer id) {
+	movieRepo.delete(id);
+	return "redirect:/ManagementMovie";
+	}
 
 
 	//////////// upload

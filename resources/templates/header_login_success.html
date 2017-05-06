@@ -18,18 +18,33 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active"><a class="tag-A" href="#">หน้าหลัก<span
+					<li class="active"><a class="tag-A" href="/home">หน้าหลัก<span
 							class="sr-only">(current)</span></a></li>
-					<li><a class="tag-A" href="#">link</a></li>
+							
+						<li><a class="tag-A" href="/Movie">หนังทั้งหมด</a></li>
+					<li><a class="tag-A" data-toggle="dropdown" href="#">ประเภทหนัง
+							<span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu" id="drop">
+							<li><a href="#">Action[แอคชั่น]</a></li>
+							<li><a href="#">Adventure[ผจญภัย]</a></li>
+							<li><a href="#">Animation[การ์ตูน]</a></li>
+							<li><a href="#">Comedy[ตลก]</a></li>
+							<li><a href="#">Sci-Fi[วิทยาศาสตร์]</a></li>
+							<li><a href="#">Sport[กีฬา]</a></li>
+							<li><a href="#">War[สงคราม]</a></li>
+							<li><a href="#">ทั้งหมด</a></li>
+						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+				
 					<li>
 						<div align="right" class="profile">
 							<div class="input-group" style="width: 250px">
 								<div class="input-group-addon"
 									style="background-color: rgb(241, 116, 14); color: white;">จำนวนเงิน</div>
 								<input type="text" class="form-control" id="exampleInputAmount"
-									placeholder="500" disabled="disabled" />
+									th:placeholder="${money}" disabled="disabled" />
 								<div class="input-group-addon">บาท</div>
 							</div>
 							<span class="profile" th:text="${fullname}"> </span>
@@ -39,11 +54,18 @@
 									class="caret"></span>
 							</button>
 							<ul class="dropdown-menu pull-left">
-								<li><a href="#">
+								<li><a href="/recharge">
 										<button class="btn btn-success ">
 											<span class="glyphicon glyphicon-bitcoin"></span>
 										</button>
 										<p style="display: inline">&nbsp;เติมเงิน</p>
+								</a></li>
+								<li><a href="#">
+										<button onclick="location.href='/home'"
+											class="btn btn-info">
+											<span class="glyphicon glyphicon-film"></span>
+										</button>
+										<p style="display: inline">&nbsp;หนังของฉัน</p>
 								</a></li>
 								<li><a href="#">
 										<button class="btn btn-primary">

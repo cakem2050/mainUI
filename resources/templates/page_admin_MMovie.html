@@ -47,7 +47,7 @@
 							<td th:text="${list.movie_name}"></td>
 							<td th:text="${list.movie_price}"></td>
 							<td><button class="btn btn-info">แก้ไข</button></td>
-							<td><button class="btn btn-danger">ลบ</button></td>
+							<td><a th:href="@{deleteMovie(id=${list.movie_id})}" class="btn btn-danger">ลบ</a></td>
 						</tr>
 					</table>
 					<div align="center">
@@ -65,7 +65,7 @@
 										th:href="'/ManagementMovie?pageindex='+${pagelist}"
 										th:text="${pagelist}"></a></li>
 								</object>
-								<li><a th:if="${pagenext != 8}"
+								<li><a th:if="${pagenext != count+1}"
 									th:href="'/ManagementMovie?pageindex='+${pagenext}"
 									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 								</a></li>
