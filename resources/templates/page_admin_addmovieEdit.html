@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<object th:include="headinclude :: head" th:remove="tag" />
+</head>
+<body>
+	<div></div>
+
+	<div th:include="${header}"></div>
+	<section class="main">
+		<!-- Start container -->
+		<div class="container">
+			<!-- Pattern -->
+			<div class="mainmargin">
+				<!-- Start Row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="thumbnail">
+							<ul class="nav nav-tabs">
+								<li role="presentation" class="active"><a
+									style="background-color: rgb(255, 175, 54); color: white;"><b>เน€เธ�เธดเน�เธกเธซเธ�เธฑเธ�</b></a></li>
+							</ul>
+							<!-- Row Image -->
+							<div class="row" style="margin-top: 20px;">
+								<div class="col-md-5 col-md-offset-1">
+									<div class="thumbnail" style="height: 450px;">
+										<img alt="" id="blah" style="width: 100%; height: 100%;" />
+									</div>
+								</div>
+								<div class="col-md-5">
+
+
+									<form action="AddMovie" method="post" th:object="${movie}"
+										enctype="multipart/form-data">
+										<input type="hidden" th:text="${id}" th:field="*{movie_id}"/>
+										<div class="row">
+											<div class="form-group col-md-7 col-md-offset-1">
+												<label>ชื่อหนัง</label> <input type="text"
+													class="form-control" name="namemovie" th:field="*{movie_name}"/>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="form-group col-md-3 col-md-offset-1">
+												<label>ราคา</label> <input type="number"
+													class="form-control" name="pricemovie" th:field="*{movie_price}"/>
+											</div>
+											<div class="form-group col-md-7 col-md-offset-1">
+												<label>ประเภทหนัง</label> <select
+													class="form-control" name="type">
+													
+													<span th:each="listType: ${type}">
+													
+														<option th:value="${listType.type_id}"
+															th:text="${listType.type_name}"></option>
+												</span>
+												</select>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-group col-md-7 col-md-offset-1">
+												<label>รูปภาพ</label> <input type="file"
+													class="form-control" id="imgInp" name="file"
+													onchange='openFile()' />
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-group col-md-11 col-md-offset-1">
+												<label>รายละเอียด</label>
+												<textarea rows="" class="form-control" name="descrip" th:field="*{movie_descrip}"></textarea>
+											</div>
+										</div>
+
+										<div class="row">
+											<div align="center">
+												<button type="submit" class="btn btn-info"
+													style="width: 150px;">เพิ่มหนัง</button>
+												<button type="button" class="btn btn-danger"
+													style="width: 150px;">ยกเลิก</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<!-- End Row Image -->
+						</div>
+					</div>
+				</div>
+				<!-- End Pattern -->
+			</div>
+			<!-- End Container -->
+		</div>
+	</section>
+	<div th:include="footer"></div>
+</body>
+</html>

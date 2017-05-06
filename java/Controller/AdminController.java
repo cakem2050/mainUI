@@ -185,19 +185,34 @@ public class AdminController {
 
 		return null;
 	}
-	
+
 	@GetMapping("/deleteUser")
 	public String delete(@RequestParam("id") Integer id) {
-	userRepo.delete(id);
-	return "redirect:/UserManagement";
-	}
-	
-	@GetMapping("/deleteMovie")
-	public String deleteMovie(@RequestParam("id") Integer id) {
-	movieRepo.delete(id);
-	return "redirect:/ManagementMovie";
+		userRepo.delete(id);
+		return "redirect:/UserManagement";
 	}
 
+	@GetMapping("/deleteMovie")
+	public String deleteMovie(@RequestParam("id") Integer id) {
+		movieRepo.delete(id);
+		return "redirect:/ManagementMovie";
+	}
+
+	@GetMapping("/pageEditMovie")
+	public String pageEditMovie(@RequestParam("id") Integer id, Model model) {
+		List<Movie> movie = movieRepo.getMovieEdit(id);
+		Iterable<Type> type = typeRepo.findAll();
+		String header = "header_login_admin";
+		model.addAttribute("header", header);
+		model.addAttribute("type", type);
+		model.addAttribute("movie", movie);
+		model.addAttribute("id", id);
+		System.out.println("hhh"+header);
+		System.out.println("tt"+type);
+		System.out.println("mm"+movie);
+		System.out.println("ii"+id);
+		return "page_admin_addmovieEdit";
+	}
 
 	//////////// upload
 	@GetMapping("/")

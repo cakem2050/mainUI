@@ -20,5 +20,8 @@ public interface MovieRepository extends CrudRepository<Movie, Integer> {
 
 	@Query(value = "SELECT * FROM movie m, type t WHERE m.type_id = t.type_id LIMIT ?1,20", nativeQuery = true)
 	List<Movie> getMovieAlllmit(Integer page);
-
+	
+	@Query(value = "SELECT * FROM movie m, type t WHERE m.movie_id = ? ", nativeQuery = true)
+	List<Movie> getMovieEdit(Integer movie_id);
+	//List<Movie> findByMovie_id(int movie_id);
 }

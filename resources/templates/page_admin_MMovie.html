@@ -46,7 +46,7 @@
 							<td><img th:src="${list.movie_img}" height="150px" alt="..." /></td>
 							<td th:text="${list.movie_name}"></td>
 							<td th:text="${list.movie_price}"></td>
-							<td><button class="btn btn-info">แก้ไข</button></td>
+							<td><a th:href="@{pageEditMovie(id=${list.movie_id})}" class="btn btn-info">แก้ไข</a></td>
 							<td><a th:href="@{deleteMovie(id=${list.movie_id})}" class="btn btn-danger">ลบ</a></td>
 						</tr>
 					</table>
