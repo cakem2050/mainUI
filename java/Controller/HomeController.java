@@ -1,6 +1,6 @@
 package Controller;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,13 +18,13 @@ import Entities.Movie;
 import Entities.Users;
 import Entities.Ajaxlogin;
 import Repository.MovieRepository;
-import Repository.UsersRepository;
+import Repository.UserRepository;
 
 @Controller
 public class HomeController {
 
 	@Autowired
-	public UsersRepository userRepo;
+	public UserRepository userRepo;
 
 	@Autowired
 	public MovieRepository movieRepo;
@@ -118,6 +118,8 @@ public class HomeController {
 		user.setUsername(username);
 		user.setStatus("nomal");
 		userRepo.save(user);
+		String header = "header_login";
+		model.addAttribute("header", header);
 		return "home";
 	}
 }

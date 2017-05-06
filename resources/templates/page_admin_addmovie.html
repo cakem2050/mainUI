@@ -29,7 +29,7 @@
 								</div>
 								<div class="col-md-5">
 
-									<form action="/setmovie"  method="post">
+									<form action="AddMovie"  method="post" enctype="multipart/form-data">
 										<div class="row">
 											<div class="form-group col-md-7 col-md-offset-1">
 												<label>เธ�เธทเน�เธญเธซเธ�เธฑเธ�</label> <input
@@ -44,9 +44,9 @@
 											</div>
 											<div class="form-group col-md-7 col-md-offset-1">
 												<label>เธ�เธฃเธฐเน€เธ เธ—เธซเธ�เธฑเธ�</label> 
-												<select class="form-control">
+												<select class="form-control" name="type">
 													<span th:each="listType: ${type}">
-														<option name="type" th:value="${listType.type_id}" th:text="${listType.type_name}"></option>
+														<option th:value="${listType.type_id}" th:text="${listType.type_name}"></option>
 													</span>
 												</select>
 											</div>
@@ -54,13 +54,13 @@
 										<div class="row">
 											<div class="form-group col-md-7 col-md-offset-1">
 												<label>รูปภาพ</label>
-												<input type="file" class="form-control"  id="imgInp" name="product_image" onchange='openFile()' />
+												<input type="file" class="form-control"  id="imgInp" name="file" onchange='openFile()' />
 											</div>
 										</div>
 										<div class="row">
 											<div class="form-group col-md-11 col-md-offset-1">
 												<label>เธฃเธฒเธขเธฅเธฐเน€เธญเธตเธขเธ”</label>
-												<textarea rows="" class="form-control" name="descripmovie"></textarea>
+												<textarea rows="" class="form-control" name="descrip"></textarea>
 											</div>
 										</div>
 

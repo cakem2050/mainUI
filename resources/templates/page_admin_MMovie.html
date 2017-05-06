@@ -38,17 +38,14 @@
 							<th class="col-md-2"></th>
 							<th>ชื่อหนัง</th>
 							<th>ราคา</th>
-							<th>ยอดขาย</th>
 							<th class="col-md-1"></th>
 							<th class="col-md-1"></th>
 						</tr>
 						<tr th:each="list,aStart:${allmovie}">
 							<td th:text="${list.movie_id}"></td>
-							<td><img src="/assets/image/GuardiansOfTheGalaxy2.jpg"
-								height="150px" alt="..." /></td>
+							<td><img th:src="${list.movie_img}" height="150px" alt="..." /></td>
 							<td th:text="${list.movie_name}"></td>
-							<td>250</td>
-							<td>1000</td>
+							<td th:text="${list.movie_price}"></td>
 							<td><button class="btn btn-info">แก้ไข</button></td>
 							<td><button class="btn btn-danger">ลบ</button></td>
 						</tr>
@@ -60,8 +57,7 @@
 									th:href="'/ManagementMovie?pageindex='+${pagebefore}"
 									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 								</a></li>
-								<object th:each="pagelist:${#numbers.sequence( 1, count)}"
-									th:remove="tag">
+								<object th:each="pagelist:${#numbers.sequence( 1, count)}" th:remove="tag">
 									<li th:if="${pageactive == pagelist}" class="active"><a
 										th:href="'/ManagementMovie?pageindex='+${pagelist}"
 										th:text="${pagelist}"></a></li>

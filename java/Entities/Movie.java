@@ -25,7 +25,6 @@ public class Movie {
 
 	private int movie_price;
 	private int type_id;
-	private String movie_status;
 	private String movie_img;
 
 	public String getMovie_img() {
@@ -76,12 +75,6 @@ public class Movie {
 		this.movie_price = movie_price;
 	}
 
-	public String getMovie_status() {
-		return movie_status;
-	}
 
-	public void setMovie_status(String movie_status) {
-		this.movie_status = movie_status;
-	}
 
 }
