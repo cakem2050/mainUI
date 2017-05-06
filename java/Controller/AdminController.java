@@ -26,8 +26,10 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 
 import Entities.Movie;
 import Entities.Type;
+import Entities.Users;
 import Repository.MovieRepository;
 import Repository.TypeRepository;
+import Repository.UserRepository;
 import Controller.storage.StorageFileNotFoundException;
 import Controller.storage.StorageService;
 import Controller.storage.StorageProperties;
@@ -36,6 +38,9 @@ import Controller.storage.StorageProperties;
 public class AdminController {
 
 	private final StorageService storageService;
+
+	@Autowired
+	public UserRepository userRepo;
 
 	@Autowired
 	public AdminController(StorageService storageService) {
@@ -47,7 +52,7 @@ public class AdminController {
 
 	@GetMapping("/UserManagement")
 	public String adminmanagement(Model model, HttpServletRequest request, HttpSession session) {
-		String page = "page_admin";
+		String page = "page_admin_Muser";
 		String header;
 		HttpSession Session = request.getSession();
 		if (Session.getAttribute("status").equals("admin")) {
@@ -55,6 +60,8 @@ public class AdminController {
 		} else {
 			header = "header_login_success";
 		}
+		Iterable<Users> us = userRepo.findAll();
+		model.addAttribute("us", us);
 		model.addAttribute("header", header);
 		return page;
 	}
@@ -81,11 +88,11 @@ public class AdminController {
 
 	@PostMapping("/AddMovie")
 	public String AddMovie(@RequestParam("file") MultipartFile file, @RequestParam("namemovie") String namemovie,
-			@RequestParam("pricemovie") String pricemovie,@RequestParam("type") int type,
+			@RequestParam("pricemovie") String pricemovie, @RequestParam("type") int type,
 			@RequestParam("descrip") String descrip, Model model, HttpServletRequest request, HttpSession session) {
-		//RedirectAttributes redirectAttributes
-		System.out.println(namemovie+"  "+pricemovie+"  "+type+"  "+descrip);
-		
+		// RedirectAttributes redirectAttributes
+		System.out.println(namemovie + "  " + pricemovie + "  " + type + "  " + descrip);
+
 		String page = "page_admin_MMovie";
 		String header;
 		HttpSession Session = request.getSession();
@@ -95,13 +102,13 @@ public class AdminController {
 			movie.setMovie_name(namemovie);
 			int price2 = Integer.parseInt(pricemovie);
 			movie.setMovie_price(price2);
-			//int type2 = Integer.parseInt(type);
+			// int type2 = Integer.parseInt(type);
 			movie.setMovie_detail(descrip);
 			Date date = new Date();
 			movie.setMovie_date(date);
 
 			StorageProperties imgg = new StorageProperties();
-			//String img1 = imgg.getLocation();
+			// String img1 = imgg.getLocation();
 			String img2 = file.getOriginalFilename();
 			String img = "/assets/imageMovie/" + img2;
 			movie.setMovie_img(img);
@@ -115,9 +122,9 @@ public class AdminController {
 			header = "header_login_success";
 			model.addAttribute("header", header);
 			return page;
-			
+
 		}
-		
+
 	}
 
 	@GetMapping("/ManagementMovie")
@@ -150,13 +157,13 @@ public class AdminController {
 			header = "header_login_admin";
 			long count = movieRepo.count();
 			System.out.println(count);
-			int countt = (int)count;
+			int countt = (int) count;
 			int count1 = countt % 10;
-			int count2 = countt/10;
-			if(count1!=0){
+			int count2 = countt / 10;
+			if (count1 != 0) {
 				count2 = count2 + 1;
 			}
-			model.addAttribute("count",  count2);
+			model.addAttribute("count", count2);
 			List<Movie> movie = null;
 			System.out.println(keyword);
 			if (keyword == null) {
@@ -178,6 +185,13 @@ public class AdminController {
 
 		return null;
 	}
+	
+	@GetMapping("/deleteUser")
+	public String delete(@RequestParam("id") Integer id) {
+	userRepo.delete(id);
+	return "redirect:/UserManagement";
+	}
+
 
 	//////////// upload
 	@GetMapping("/")

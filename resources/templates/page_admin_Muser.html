@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<object th:include="headinclude :: head" th:remove="tag" />
+<meta charset="UTF-8"/>
+</head>
+<body>
+	<div></div>
+
+	<div th:include="${header}"></div>
+	<section class="main">
+		<!-- Start container -->
+		<div class="container">
+			<!-- Pattern -->
+			<div class="mainmargin">
+				<div class="row" >
+				<h1 align="center">จัดการผู้ใช้งาน</h1><br/>
+					<div class="col-sm-2"></div>
+					
+					<div>
+						<table class="table table-hover">
+    						<thead>
+						      <tr>
+						        <th width="90">ชื่อ</th>
+						        <th width="100">ที่อยู่</th>
+						        <th width="100">อีเมล</th>
+						        <th width="100">เบอร์โทรศัพท์</th>
+						        <th width="120">ยอดเงินคงเหลือ</th>
+						        <th width="90">สเตตัส</th>
+						      </tr>
+						    </thead>
+						 </table>
+						 <div th:each="info: ${us}">
+						 <table class="table table-hover">
+						 		<tbody>
+							     <tr>
+							      <td width="100"><span th:text="${info.fullname}"></span></td>
+							      <td width="100"><span th:text="${info.address}"></span></td>
+							      <td width="150"><span th:text="${info.email}"></span></td>
+							      <td width="100"><span th:text="${info.tel}"></span></td>
+							      <td width="100"><span th:text="${info.money}"></span></td>
+							      <td width="100"><span th:text="${info.status}"></span></td>
+							      <td width="100"><span><a class="btn btn-danger" th:href="@{deleteUser(id=${info.user_id})}">ลบ</a></span></td>
+							      </tr>
+						      </tbody>
+						</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div th:include="footer"></div>
+</body>
+</html>
