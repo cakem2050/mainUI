@@ -45,6 +45,8 @@ public class HomeController {
 				header = "header_login_success";
 			}
 			String fullname2 = (String) Session.getAttribute("fullname");
+			int Money = (int) Session.getAttribute("money");
+			model.addAttribute("money",Money);
 			model.addAttribute("fullname", fullname2);
 			model.addAttribute("header", header);
 		} else {
@@ -79,8 +81,12 @@ public class HomeController {
 			obj.setMassage1("success");
 			String fullname = user.get(0).getFullname();
 			String status = user.get(0).getStatus();
+			int money = user.get(0).getMoney();
+			int id = user.get(0).getUser_id();
 			Session.setAttribute("status", status);
 			Session.setAttribute("fullname", fullname);
+			Session.setAttribute("money", money);
+			Session.setAttribute("id", id);
 		}
 		return obj;
 
@@ -89,9 +95,7 @@ public class HomeController {
 	@GetMapping("/checkLogout")
 	public String checkLogout(Model model, HttpServletRequest request, HttpSession session) {
 		request.getSession().removeAttribute("fullname");
-		String header = "header_login";
-		model.addAttribute("header", header);
-		return "home";
+		return "redirect:/home";
 	}
 
 	@GetMapping("/home_session")

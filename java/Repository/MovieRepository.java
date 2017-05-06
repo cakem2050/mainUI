@@ -16,7 +16,10 @@ public interface MovieRepository extends CrudRepository<Movie, Integer> {
 	@Query(value="SELECT * FROM movie m, type t WHERE m.type_id = t.type_id LIMIT ?1,10", nativeQuery = true)
 	List<Movie> getMovielmit(Integer page);
 
-	@Query(value = "SELECT * FROM movie WHERE movie_name LIKE '%?%' ", nativeQuery = true)
+	@Query(value = "SELECT * FROM movie WHERE movie_name LIKE %?% ", nativeQuery = true)
 	List<Movie> searchMovie(String keyword);
+	
+	@Query(value="SELECT * FROM movie m, type t WHERE m.type_id = t.type_id LIMIT ?1,20", nativeQuery = true)
+	List<Movie> getMovieAlllmit(Integer page);
 
 }

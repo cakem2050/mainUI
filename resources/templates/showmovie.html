@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<object th:include="headinclude :: head" th:remove="tag" />
+</head>
+<body>
+	<div></div>
+
+	<div th:include="${header}"></div>
+	<section class="main">
+		<!-- Start container -->
+		<div class="container">
+			<div class="mainmargin">
+				<!-- BiG ROW -->
+				<div class="row">
+					<div class="col-md-9">
+						<!-- Start Row -->
+						<div class="row">
+							<div class="col-md-12">
+								<div class="thumbnail">
+									<ul class="nav nav-tabs">
+										<li role="presentation" class="active"><a
+											style="background-color: rgb(255, 175, 54); color: white;"><b>��¡��˹ѧ</b></a></li>
+									</ul>
+									<div id="carousel-example-generic2" class="carousel slide"
+										data-ride="carousel" data-interval="0">
+										<!-- Indicators -->
+
+										<ol class="carousel-indicators">
+
+											<li data-target="#carousel-example-generic" data-slide-to="0"
+												class="active"></li>
+											<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+										</ol>
+
+										<!-- Wrapper for slides -->
+										<div class="row">
+											<!-- item -->
+											<div class="col-md-3" th:each="movielist:${movie}">
+												<div class="thumbnail">
+													<img th:src="@{/assets/image/GuardiansOfTheGalaxy2.jpg}"
+														alt="..." />
+													<div class="caption">
+														<h3 th:text="${movielist.movie_id}">Thumbnail label</h3>
+														<p th:text="${countpage}">...</p>
+														<p>
+															<a href="#" class="btn btn-primary" role="button">Button</a>
+															<a href="#" class="btn btn-default" role="button">Button</a>
+														</p>
+													</div>
+												</div>
+											</div>
+											<!-- item -->
+										</div>
+									</div>
+									<div align="center">
+										<nav aria-label="Page navigation">
+											<ul class="pagination">
+												<li><a th:if="${pagebefore != 0}"
+													th:href="'/Movie?pageindex='+${pagebefore}"
+													aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+												</a></li>
+												<object th:each="pagelist:${#numbers.sequence( 1, countpage)}"
+													th:remove="tag">
+													<li th:if="${pageactive == pagelist}" class="active"><a
+														th:href="'/Movie?pageindex='+${pagelist}"
+														th:text="${pagelist}"></a></li>
+													<li th:unless="${pageactive == pagelist}"><a
+														th:href="'/Movie?pageindex='+${pagelist}"
+														th:text="${pagelist}"></a></li>
+												</object>
+												<li><a th:if="${pagenext != countpage+1}"
+													th:href="'/Movie?pageindex='+${pagenext}"
+													aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+												</a></li>
+											</ul>
+										</nav>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+						<!-- EndRow -->
+					</div>
+					<div class="col-md-3">
+						<div class="list-group">
+							<a href="#" class="list-group-item disabled"
+								style="background-color: #0000FF; color: white">������˹ѧ</a> <a
+								href="#" class="list-group-item">˹ѧ����</a> <a href="#"
+								class="list-group-item">˹ѧ�š</a> <a href="#"
+								class="list-group-item">˹ѧ������</a> <a href="#"
+								class="list-group-item">˹ѧ Fantasy</a> <a href="#"
+								class="list-group-item">˹ѧ Animation</a> <a href="#"
+								class="list-group-item">˹ѧ��</a> <a href="#"
+								class="list-group-item">˹ѧ�չ</a> <a href="#"
+								class="list-group-item">˹ѧ����</a> <a href="#"
+								class="list-group-item">����ٹ</a>
+						</div>
+					</div>
+				</div>
+				<!-- Big -->
+				<!-- bottom bar -->
+				<div class="row"></div>
+				<!-- End bottom bar -->
+			</div>
+		</div>
+		<!-- End Pattern -->
+		<!-- End Container -->
+	</section>
+	<div th:include="footer"></div>
+</body>
+</html>
