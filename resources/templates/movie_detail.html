@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<object th:include="headinclude :: head" th:remove="tag" />
+</head>
+<body>
+	<div></div>
+
+	<div th:include="${header}"></div>
+	<section class="main">
+		<!-- Start container -->
+		<div class="container">
+			<!-- Pattern -->
+			<div class="mainmargin">
+				<!-- Start Row -->
+				<div class="row">
+					<!-- News -->
+					<div class="col-md-12">
+						<div class="thumbnail">
+							<div class="col-md-6">
+								<div class="thumbnail">
+									<img alt="" th:src="${movie.movie_img}+.jpg" />
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="thumbnail">
+									<table class="table">
+										<tr>
+											<td align="right"><h4>ชื่อหนัง</h4></td><td><h4 th:text="${movie.movie_name}"></h4></td>
+										</tr>
+										<tr>
+											<td align="right"><h4>ชื่อหนัง</h4></td><td><h4 th:text="${movie.movie_name}"></h4></td>
+										</tr>
+										<tr>
+											<td align="right"><h4>ชื่อหนัง</h4></td><td><h4 th:text="${movie.movie_name}"></h4></td>
+										</tr>
+										<tr>
+											<td align="right"><h4>ชื่อหนัง</h4></td><td><h4 th:text="${movie.movie_name}"></h4></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- End News -->
+				</div>
+				<!-- End Pattern -->
+			</div>
+			<!-- End Container -->
+		</div>
+	</section>
+	<div th:include="footer"></div>
+</body>
+</html>

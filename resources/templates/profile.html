@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<object th:include="headinclude :: head" th:remove="tag" />
+</head>
+<body>
+	<div></div>
+
+	<div th:include="${header}"></div>
+	<section class="main">
+		<!-- Start container -->
+		<div class="container">
+			<!-- Pattern -->
+			<div class="mainmargin" style="margin-bottom: 200px">
+				<div class="panel panel-primary" style="margin-bottom: 0px;">
+					<!-- Default panel contents -->
+					<div class="panel-heading" align="center">
+						<h3>ข้อมูลส่วนตัว</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-6 col-md-offset-3">
+								<table class="table">
+									<tr>
+										<td align="right" class="col-md-3"><h4>ชื่อ-นามสกุล</h4></td>
+										<td align="left"><input type="text"
+											th:value="${user.fullname}" class="form-control"
+											disabled="disabled" /></td>
+									</tr>
+									<tr>
+										<td align="right"><h4>เบอร์โทรศัพท์</h4></td>
+										<td align="left"><input type="text"
+											th:value="${user.tel}" class="form-control"
+											disabled="disabled" /></td>
+									</tr>
+									<tr>
+										<td align="right"><h4>Email</h4></td>
+										<td align="left"><input type="text"
+											th:value="${user.email}" class="form-control"
+											disabled="disabled" /></td>
+									</tr>
+									<tr>
+										<td align="right"><h4>ที่อยู่</h4></td>
+										<td align="left"><textarea class="form-control"
+												disabled="disabled" th:text="${user.address}"></textarea></td>
+									</tr>
+								</table>
+								<div align="center">
+									<a href="/EditProfile" class="btn btn-primary btn-lg">แก้ไข</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Pattern -->
+		</div>
+		<!-- End Container -->
+	</section>
+	<div th:include="footer"></div>
+</body>
+</html>

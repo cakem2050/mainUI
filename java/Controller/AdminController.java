@@ -32,7 +32,6 @@ import Repository.TypeRepository;
 import Repository.UserRepository;
 import Controller.storage.StorageFileNotFoundException;
 import Controller.storage.StorageService;
-import Controller.storage.StorageProperties;
 
 @Controller
 public class AdminController {
@@ -40,15 +39,18 @@ public class AdminController {
 	private final StorageService storageService;
 
 	@Autowired
-	public UserRepository userRepo;
-
-	@Autowired
 	public AdminController(StorageService storageService) {
 		this.storageService = storageService;
 	}
 
 	@Autowired
+	public UserRepository userRepo;
+
+	@Autowired
 	public MovieRepository movieRepo;
+
+	@Autowired
+	public TypeRepository typeRepo;
 
 	@GetMapping("/UserManagement")
 	public String adminmanagement(Model model, HttpServletRequest request, HttpSession session) {
@@ -65,9 +67,6 @@ public class AdminController {
 		model.addAttribute("header", header);
 		return page;
 	}
-
-	@Autowired
-	public TypeRepository typeRepo;
 
 	@GetMapping("/PageMovie")
 	public String PageMovie(Model model, HttpServletRequest request, HttpSession session) {
@@ -90,9 +89,7 @@ public class AdminController {
 	public String AddMovie(@RequestParam("file") MultipartFile file, @RequestParam("namemovie") String namemovie,
 			@RequestParam("pricemovie") String pricemovie, @RequestParam("type") int type,
 			@RequestParam("descrip") String descrip, Model model, HttpServletRequest request, HttpSession session) {
-		// RedirectAttributes redirectAttributes
-		System.out.println(namemovie + "  " + pricemovie + "  " + type + "  " + descrip);
-
+	
 		String page = "page_admin_MMovie";
 		String header;
 		HttpSession Session = request.getSession();
@@ -107,7 +104,7 @@ public class AdminController {
 			Date date = new Date();
 			movie.setMovie_date(date);
 
-			StorageProperties imgg = new StorageProperties();
+			// StorageProperties imgg = new StorageProperties();
 			// String img1 = imgg.getLocation();
 			String img2 = file.getOriginalFilename();
 			String img = "/assets/imageMovie/" + img2;
@@ -221,7 +218,7 @@ public class AdminController {
 		String header;
 		HttpSession Session = request.getSession();
 		if (Session.getAttribute("status").equals("admin")) {
-			
+
 			Movie movie = new Movie();
 			int id = Integer.parseInt(movie_id);
 			movie.setType_id(type);
@@ -234,18 +231,17 @@ public class AdminController {
 			Date date = new Date();
 			movie.setMovie_date(date);
 
-			//StorageProperties imgg = new StorageProperties();
+			// StorageProperties imgg = new StorageProperties();
 			// String img1 = imgg.getLocation();
-			
-			if(imgname==null){
+
+			if (imgname == null) {
 				storageService.store(file);
 				String img2 = file.getOriginalFilename();
 				String img = "/assets/imageMovie/" + img2;
 				movie.setMovie_img(img);
-			}else {
+			} else {
 				movie.setMovie_img(imgname);
 			}
-			
 
 			movieRepo.save(movie);
 
