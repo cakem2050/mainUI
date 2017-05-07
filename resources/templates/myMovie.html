@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<object th:include="headinclude :: head" th:remove="tag" />
+<meta charset="UTF-8"/>
+</head>
+<body>
+	<div></div>
+
+	<div th:include="${header}"></div>
+	<section class="main">
+		<!-- Start container -->
+		<div class="container">
+			<!-- Pattern -->
+			<div class="mainmargin">
+				<div class="row" >
+				<h1 align="center">หนังของฉัน</h1><br/>
+					<div class="col-sm-2"></div>
+					
+					<div>
+						<table class="table table-hover">
+    						<thead>
+						      <tr>
+						        <th width="90">ไอดี</th>
+						        <th width="90">ชื่อ</th>
+						        <th width="100">วันที่</th>
+						      </tr>
+						    </thead>
+						 </table>
+						 <div th:each="mov : ${Mymv}">
+						 <table class="table table-hover">
+						 		<tbody>
+							     <tr>
+							      <td width="100"><span th:text="${mov.movie_id}"></span></td>
+							      <td width="100"><span th:text="${mov.movie_name}"></span></td>
+							      <td width="100"><span th:text="${mov.movie_date}"></span></td>
+							      </tr>
+						      </tbody>
+						</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div th:include="footer"></div>
+</body>
+</html>

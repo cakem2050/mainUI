@@ -15,39 +15,40 @@
 				<div class="panel panel-primary" style="margin-bottom: 0px;">
 					<!-- Default panel contents -->
 					<div class="panel-heading" align="center">
-						<h3>¢ÈÕ¡Ÿ≈ Ë«πµ—«</h3>
+						<h3>‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•‡∏™‡πà‡∏ß‡∏ô‡∏ï‡∏±‡∏ß</h3>
 					</div>
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-6 col-md-offset-3">
-								<table class="table">
-									<tr>
-										<td align="right" class="col-md-3"><h4>™◊ËÕ-π“¡ °ÿ≈</h4></td>
-										<td align="left"><input type="text"
-											th:value="${user.fullname}" class="form-control"
-											disabled="disabled" /></td>
-									</tr>
-									<tr>
-										<td align="right"><h4>‡∫Õ√Ï‚∑√»—æ∑Ï</h4></td>
-										<td align="left"><input type="text"
-											th:value="${user.tel}" class="form-control"
-											disabled="disabled" /></td>
-									</tr>
-									<tr>
-										<td align="right"><h4>Email</h4></td>
-										<td align="left"><input type="text"
-											th:value="${user.email}" class="form-control"
-											disabled="disabled" /></td>
-									</tr>
-									<tr>
-										<td align="right"><h4>∑’ËÕ¬ŸË</h4></td>
-										<td align="left"><textarea class="form-control"
-												disabled="disabled" th:text="${user.address}"></textarea></td>
-									</tr>
-								</table>
-								<div align="center">
-									<a href="/EditProfile" class="btn btn-primary btn-lg">·°È‰¢</a>
-								</div>
+								<form action="/EditProfile" method="post">
+									<table class="table">
+										<tr>
+											<td align="right" class="col-md-3"><h4>‡∏ä‡∏∑‡πà‡∏≠-‡∏ô‡∏≤‡∏°‡∏™‡∏Å‡∏∏‡∏•</h4></td>
+											<td align="left"><input type="text"
+												th:field="${user.fullname}" name="fullname" class="form-control" /></td>
+										</tr>
+										<tr>
+											<td align="right"><h4>‡πÄ‡∏ö‡∏≠‡∏£‡πå‡πÇ‡∏ó‡∏£‡∏®‡∏±‡∏û‡∏ó‡πå</h4></td>
+											<td align="left"><input type="text"
+												th:value="${user.tel}" name="tel" class="form-control" /></td>
+										</tr>
+										<tr>
+											<td align="right"><h4>Email</h4></td>
+											<td align="left"><input type="email"
+												th:value="${user.email}" name="email" class="form-control"
+												 /></td>
+										</tr>
+										<tr>
+											<td align="right"><h4>‡∏ó‡∏µ‡πà‡∏≠‡∏¢‡∏π‡πà</h4></td>
+											<td align="left"><textarea class="form-control"
+													th:text="${user.address}" name="address"></textarea></td>
+										</tr>
+									</table>
+									<div align="center">
+										<button class="btn btn-success btn-lg">
+											‡∏¢‡∏∑‡∏ô‡∏¢‡∏±‡∏ô</button>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>

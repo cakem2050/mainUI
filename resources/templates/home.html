@@ -18,7 +18,7 @@
 					<div class="col-md-6">
 						<div class="thumbnail">
 							<ul class="nav nav-tabs">
-								<li role="presentation" class="active"><a href="#">ข่าว</a></li>
+								<li role="presentation" class="active"><a href="#">เธ�เน�เธฒเธง</a></li>
 							</ul>
 							<div class="caption">
 							<table class="table">
@@ -76,7 +76,7 @@
 					<div class="col-md-12">
 						<div class="thumbnail">
 						<ul class="nav nav-tabs">
-								<li role="presentation" class="active"><a style="background-color: rgb(255, 175, 54);color: white;"><b>เธซเธ�เธฑเธ�เน�เธซเธกเน�</b></a></li>
+								<li role="presentation" class="active"><a style="background-color: rgb(255, 175, 54);color: white;"><b>เน€เธ�เธ�เน€เธ�๏ฟฝเน€เธ�เธ‘เน€เธ�๏ฟฝเน€เธ�๏ฟฝเน€เธ�เธ�เน€เธ�เธ�เน€เธ�๏ฟฝ</b></a></li>
 							</ul>
 							<div id="carousel-example-generic2" class="carousel slide"
 								data-ride="carousel" data-interval="0">
@@ -108,8 +108,8 @@
 														<h3 th:text="${list.movie_name}"></h3>
 														<p>...</p>
 														<p>
-															<a href="#" class="btn btn-primary" role="button">Button</a>
-															<a href="#" class="btn btn-default" role="button">Button</a>
+															<a th:href="@{/BuyMovie?idmovie={id}(id=${list.movie_id})}" class="btn btn-warning" role="button">ซื้อหนัง</a>
+															<a href="#" class="btn btn-success" role="button">รายละเอียด</a>
 														</p>
 													</div>
 												</div>
@@ -138,7 +138,7 @@
 								
 								<!-- Controls -->
 								<div align="right">
-								<a class="btn btn-info">เธซเธ�เธฑเธ�เธ—เธฑเน�เธ�เธซเธกเธ”</a>
+								<a class="btn btn-info">เน€เธ�เธ�เน€เธ�๏ฟฝเน€เธ�เธ‘เน€เธ�๏ฟฝเน€เธ�โ€”เน€เธ�เธ‘เน€เธ�๏ฟฝเน€เธ�๏ฟฝเน€เธ�เธ�เน€เธ�เธ�เน€เธ�โ€�</a>
 								<a class="btn btn-primary" href="#carousel-example-generic2"
 									role="button" data-slide="prev"> <span
 									class="glyphicon glyphicon-chevron-left"></span> <span
