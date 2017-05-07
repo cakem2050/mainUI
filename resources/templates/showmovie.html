@@ -45,7 +45,7 @@
 														<p th:text="${countpage}">...</p>
 														<p>
 															<a th:href="@{/BuyMovie?idmovie={id}(id=${movielist.movie_id})}" class="btn btn-warning" role="button">ซื้อหนัง</a>
-															<a href="#" class="btn btn-success" role="button" style="width: 80px">รายะเอียด</a>
+															<a th:href="@{/MovieDetail?movieid={id}(id=${movielist.movie_id})}" role="button">รายละเอียด</a>
 														</p>
 													</div>
 												</div>

@@ -109,7 +109,7 @@
 														<p>...</p>
 														<p>
 															<a th:href="@{/BuyMovie?idmovie={id}(id=${list.movie_id})}" class="btn btn-warning" role="button">ซื้อหนัง</a>
-															<a href="#" class="btn btn-success" role="button">รายละเอียด</a>
+															<a th:href="@{/MovieDetail?movieid={id}(id=${list.movie_id})}" role="button">รายละเอียด</a>
 														</p>
 													</div>
 												</div>
@@ -125,8 +125,8 @@
 														<h3 th:text="${list.movie_name}"></h3>
 														<p>...</p>
 														<p>
-															<a href="#" class="btn btn-primary" role="button">Button</a>
-															<a href="#" class="btn btn-default" role="button">Button</a>
+															<a th:href="@{/BuyMovie?idmovie={id}(id=${list.movie_id})}" class="btn btn-warning" role="button">ซื้อหนัง</a>
+															<a th:href="@{/MovieDetail?movieid={id}(id=${list.movie_id})}" class="btn btn-success"  role="button">รายละเอียด</a>
 														</p>
 													</div>
 												</div>
