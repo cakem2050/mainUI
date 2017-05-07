@@ -3,9 +3,11 @@ package Controller;
 import Entities.Ajaxlogin;
 import Entities.Movie;
 import Entities.OrderMovie;
+import Entities.Type;
 import Entities.Users;
 import Repository.MovieRepository;
 import Repository.OrderMovieRepository;
+import Repository.TypeRepository;
 import Repository.UserRepository;
 
 import java.io.IOException;
@@ -46,10 +48,12 @@ public class AjaxController {
 
 	@Autowired
 	public UserRepository userRepo;
+	@Autowired
+	public TypeRepository typeRepo;
 
 	@GetMapping("/Movie")
-	public String movie(@Param("pageindex") Integer pageindex, Model model, HttpServletRequest request,
-			HttpSession session) {
+	public String movie(@Param("getTypeId") Integer typeId, @Param("pageindex") Integer pageindex, Model model,
+			HttpServletRequest request, HttpSession session) {
 		HttpSession Session = request.getSession();
 		String page = "showmovie";
 		Integer pagelimit;
@@ -82,6 +86,8 @@ public class AjaxController {
 				page = "page_admin";
 				header = "header_login_admin";
 			} else {
+				Iterable<Type> type = typeRepo.findAll();
+				model.addAttribute("type", type);
 				header = "header_login_success";
 			}
 			String fullname2 = (String) Session.getAttribute("fullname");
@@ -94,7 +100,14 @@ public class AjaxController {
 			model.addAttribute("header", header);
 			return "redirect:/home";
 		}
-		List<Movie> movie = (List<Movie>) movieRepo.getMovieAlllmit(pagelimit);
+		System.out.println("ttt   " + typeId);
+		List<Movie> movie = null;
+		if (typeId != null) {
+			movie = (List<Movie>) movieRepo.getMovieTypelmit(typeId, pagelimit);
+		} else {
+			movie = (List<Movie>) movieRepo.getMovieAlllmit(pagelimit);
+		}
+
 		int count = (int) movieRepo.count();
 		int countpage = (int) Math.ceil(count / 20.0);
 		model.addAttribute("movie", movie);
@@ -145,7 +158,8 @@ public class AjaxController {
 
 	@PostMapping("/EditProfile")
 	public String comitEditProfile(@RequestParam("fullname") String fullname, @RequestParam("email") String email,
-			@RequestParam("tel") String tel,@RequestParam("address") String address , HttpSession Session, Model model) {
+			@RequestParam("tel") String tel, @RequestParam("address") String address, HttpSession Session,
+			Model model) {
 		String header;
 		if (Session.getAttribute("status") != null) {
 			header = "header_login_success";
@@ -155,7 +169,7 @@ public class AjaxController {
 		int id = (int) Session.getAttribute("id");
 		Users select = userRepo.findOne(id);
 		Users user = new Users();
-		
+
 		user.setUser_id(id);
 		user.setUsername(select.getUsername());
 		user.setMoney(select.getMoney());
@@ -166,16 +180,16 @@ public class AjaxController {
 		user.setEmail(email);
 		user.setAddress(address);
 		user.setUser_have_movie(select.getUser_have_movie());
-		
+
 		userRepo.save(user);
 		return "redirect:/Profile";
 	}
-	
+
 	@Autowired
 	public OrderMovieRepository orderRepo;
-	
+
 	@GetMapping("/BuyMovie")
-	public String buymovie(@RequestParam("idmovie") int movie_id,HttpSession Session,Model model){
+	public String buymovie(@RequestParam("idmovie") int movie_id, HttpSession Session, Model model) {
 		String header;
 		if (Session.getAttribute("status") != null) {
 			header = "header_login_success";
@@ -192,11 +206,23 @@ public class AjaxController {
 		model.addAttribute("header", header);
 		model.addAttribute("money", Money);
 		model.addAttribute("fullname", fullname2);
+		
+		Movie movie = new Movie();
+		movie = movieRepo.findOne(movie_id);
+		
+		int sessionmoney = (int) Session.getAttribute("money");
+		int money = sessionmoney- movie.getMovie_price();
+		Session.setAttribute("money", money);
+		int iduser = (int) Session.getAttribute("id");
+		Users user = userRepo.findOne(iduser);
+		user.setMoney(money);
+		userRepo.save(user);
+		
 		return "redirect:/Movie";
 	}
-	
+
 	@GetMapping("/MovieDetail")
-	public String movieDetail(@RequestParam("movieid") int id ,HttpSession Session,Model model){
+	public String movieDetail(@RequestParam("movieid") int id, HttpSession Session, Model model) {
 		String header;
 		if (Session.getAttribute("status") != null) {
 			header = "header_login_success";
@@ -210,8 +236,70 @@ public class AjaxController {
 		model.addAttribute("money", Money);
 		Movie movie = new Movie();
 		movie = movieRepo.findOne(id);
-		model.addAttribute("movie",movie);
+		model.addAttribute("movie", movie);
 		return "movie_detail";
 	}
+	
+	
+	@GetMapping("/myMovie")
+	public String myMovie(@Param("pageindex") Integer pageindex, Model model,
+			HttpServletRequest request, HttpSession session) {
+		HttpSession Session = request.getSession();
+		int user_id = (int) Session.getAttribute("id");
+		
+		String page = "showmovieMy";
+		Integer pagelimit;
+		Integer nextpage, beforepage, pageactive;
+		if (pageindex != null && pageindex != 1) {
+			pageactive = pageindex;
+			if (pageindex == 2) {
+				pagelimit = 20;
+			} else {
+				pagelimit = (pageindex - 1) * 20;
+			}
+			model.addAttribute("page", pagelimit);
+			beforepage = pageindex - 1;
+			nextpage = pageindex + 1;
+			model.addAttribute("pagebefore", beforepage);
+			model.addAttribute("pagenext", nextpage);
+			model.addAttribute("pageactive", pageactive);
+		} else {
+			pageactive = 1;
+			pagelimit = 0;
+			beforepage = 0;
+			nextpage = 2;
+			model.addAttribute("pagebefore", beforepage);
+			model.addAttribute("pagenext", nextpage);
+			model.addAttribute("pageactive", pageactive);
+		}
+		if (Session.getAttribute("fullname") != null) {
+			String header;
+			if (Session.getAttribute("status").equals("admin")) {
+				page = "page_admin";
+				header = "header_login_admin";
+			} else {
+				Iterable<Type> type = typeRepo.findAll();
+				model.addAttribute("type", type);
+				header = "header_login_success";
+			}
+			String fullname2 = (String) Session.getAttribute("fullname");
+			int Money = (int) Session.getAttribute("money");
+			model.addAttribute("money", Money);
+			model.addAttribute("fullname", fullname2);
+			model.addAttribute("header", header);
+		} else {
+			String header = "header_login";
+			model.addAttribute("header", header);
+			return "redirect:/home";
+		}
+		List<Movie> movie = null;
+			movie = (List<Movie>) movieRepo.getMovieMy(user_id, pagelimit);
 
+
+		int count = (int) movieRepo.count();
+		int countpage = (int) Math.ceil(count / 20.0);
+		model.addAttribute("movie", movie);
+		model.addAttribute("countpage", countpage);
+		return page;
+	}
 }

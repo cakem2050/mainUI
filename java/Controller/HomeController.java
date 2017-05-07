@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import Entities.Movie;
+import Entities.Type;
 import Entities.Users;
 import Entities.Ajaxlogin;
 import Repository.MovieRepository;
+import Repository.TypeRepository;
 import Repository.UserRepository;
 
 @Controller
@@ -27,6 +29,8 @@ public class HomeController {
 
 	@Autowired
 	public MovieRepository movieRepo;
+	@Autowired
+	public TypeRepository typeRepo;
 
 	@GetMapping("/home")
 	public String home(Model model, HttpServletRequest request, HttpSession session) {
@@ -42,6 +46,8 @@ public class HomeController {
 				header = "header_login_admin";
 				return "redirect:/UserManagement";
 			} else {
+				Iterable<Type> type = typeRepo.findAll();
+				model.addAttribute("type", type);
 				header = "header_login_success";
 			}
 			String fullname2 = (String) Session.getAttribute("fullname");
@@ -124,6 +130,6 @@ public class HomeController {
 		userRepo.save(user);
 		String header = "header_login";
 		model.addAttribute("header", header);
-		return "home";
+		return "redirect:/home";
 	}
 }

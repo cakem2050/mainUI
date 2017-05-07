@@ -41,12 +41,11 @@
 													<img style="height: 200px" th:src="@{${movielist.movie_img}}" alt="..." />
 													<div class="caption">
 														<h3 th:text="${movielist.movie_name}">Thumbnail label</h3>
-														<h3 th:text="${movielist.movie_price}+ บาท">Thumbnail label</h3>
 														
-														<p align="center">
-															<a style="width: 60px"
+														<p>
+															<a
 																th:href="@{/BuyMovie?idmovie={id}(id=${movielist.movie_id})}"
-																class="btn btn-warning" role="button">ซื้อหนัง</a> <a style="width: 85px" class="btn btn-success"
+																class="btn btn-warning" role="button">ซื้อหนัง</a> <a
 																th:href="@{/MovieDetail?movieid={id}(id=${movielist.movie_id})}"
 																role="button">รายละเอียด</a>
 														</p>

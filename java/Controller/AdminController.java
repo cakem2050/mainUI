@@ -59,8 +59,9 @@ public class AdminController {
 		HttpSession Session = request.getSession();
 		if (Session.getAttribute("status").equals("admin")) {
 			header = "header_login_admin";
-		} else {
-			header = "header_login_success";
+		} else {	
+			header = null;
+			page = "redirect:/home";
 		}
 		Iterable<Users> us = userRepo.findAll();
 		model.addAttribute("us", us);
@@ -96,6 +97,7 @@ public class AdminController {
 		if (Session.getAttribute("status").equals("admin")) {
 			storageService.store(file);
 			Movie movie = new Movie();
+			movie.setType_id(type);
 			movie.setMovie_name(namemovie);
 			int price2 = Integer.parseInt(pricemovie);
 			movie.setMovie_price(price2);

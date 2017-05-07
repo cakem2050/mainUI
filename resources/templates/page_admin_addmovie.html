@@ -18,7 +18,7 @@
 						<div class="thumbnail">
 							<ul class="nav nav-tabs">
 								<li role="presentation" class="active"><a
-									style="background-color: rgb(255, 175, 54); color: white;"><b>เน€เธ�เธดเน�เธกเธซเธ�เธฑเธ�</b></a></li>
+									style="background-color: rgb(255, 175, 54); color: white;"><b>เพิ่มหนัง</b></a></li>
 							</ul>
 							<!-- Row Image -->
 							<div class="row" style="margin-top: 20px;">
@@ -34,18 +34,18 @@
 										enctype="multipart/form-data">
 										<div class="row">
 											<div class="form-group col-md-7 col-md-offset-1">
-												<label>เธ�เธทเน�เธญเธซเธ�เธฑเธ�</label> <input type="text"
+												<label>ชื่อหนัง</label> <input type="text"
 													class="form-control" name="namemovie" />
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="form-group col-md-3 col-md-offset-1">
-												<label>เธฃเธฒเธ�เธฒ</label> <input type="number"
+												<label>ราคา</label> <input type="number"
 													class="form-control" name="pricemovie" />
 											</div>
 											<div class="form-group col-md-7 col-md-offset-1">
-												<label>เธ�เธฃเธฐเน€เธ เธ—เธซเธ�เธฑเธ�</label> <select
+												<label>เพิ่มรูป</label> <select
 													class="form-control" name="type">
 													<span th:each="listType: ${type}">
 														<option th:value="${listType.type_id}"
@@ -63,7 +63,7 @@
 										</div>
 										<div class="row">
 											<div class="form-group col-md-11 col-md-offset-1">
-												<label>เธฃเธฒเธขเธฅเธฐเน€เธญเธตเธขเธ”</label>
+												<label>รายละเอียด</label>
 												<textarea rows="" class="form-control" name="descrip"></textarea>
 											</div>
 										</div>
@@ -71,9 +71,8 @@
 										<div class="row">
 											<div align="center">
 												<button type="submit" class="btn btn-info"
-													style="width: 150px;">เน€เธ�เธดเน�เธก</button>
-												<button type="button" class="btn btn-danger"
-													style="width: 150px;">เธขเธ�เน€เธฅเธดเธ�</button>
+													style="width: 150px;">เพิ่มหนัง</button>
+												
 											</div>
 										</div>
 									</form>
