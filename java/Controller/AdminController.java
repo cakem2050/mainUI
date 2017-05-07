@@ -207,11 +207,58 @@ public class AdminController {
 		model.addAttribute("type", type);
 		model.addAttribute("movie", movie);
 		model.addAttribute("id", id);
-		System.out.println("hhh"+header);
-		System.out.println("tt"+type);
-		System.out.println("mm"+movie);
-		System.out.println("ii"+id);
 		return "page_admin_addmovieEdit";
+	}
+
+	@PostMapping("/EditMovie")
+	public String EditMovie(@RequestParam("file") MultipartFile file, @RequestParam("id") String movie_id,
+			@RequestParam("namemovie") String namemovie, @RequestParam("pricemovie") String pricemovie,
+			@RequestParam("type") int type, @RequestParam("descrip") String descrip,
+			@RequestParam("imgname") String imgname, Model model, HttpServletRequest request, HttpSession session) {
+		System.out.println(namemovie + "  " + pricemovie + "  " + type + "  " + descrip);
+
+		String page = "page_admin_MMovie";
+		String header;
+		HttpSession Session = request.getSession();
+		if (Session.getAttribute("status").equals("admin")) {
+			
+			Movie movie = new Movie();
+			int id = Integer.parseInt(movie_id);
+			movie.setType_id(type);
+			movie.setMovie_id(id);
+			movie.setMovie_name(namemovie);
+			int price2 = Integer.parseInt(pricemovie);
+			movie.setMovie_price(price2);
+			// int type2 = Integer.parseInt(type);
+			movie.setMovie_detail(descrip);
+			Date date = new Date();
+			movie.setMovie_date(date);
+
+			//StorageProperties imgg = new StorageProperties();
+			// String img1 = imgg.getLocation();
+			
+			if(imgname==null){
+				storageService.store(file);
+				String img2 = file.getOriginalFilename();
+				String img = "/assets/imageMovie/" + img2;
+				movie.setMovie_img(img);
+			}else {
+				movie.setMovie_img(imgname);
+			}
+			
+
+			movieRepo.save(movie);
+
+			header = "header_login_admin";
+			return "redirect:/ManagementMovie";
+		} else {
+			page = "home";
+			header = "header_login_success";
+			model.addAttribute("header", header);
+			return page;
+
+		}
+
 	}
 
 	//////////// upload

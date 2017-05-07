@@ -24,26 +24,28 @@
 							<div class="row" style="margin-top: 20px;">
 								<div class="col-md-5 col-md-offset-1">
 									<div class="thumbnail" style="height: 450px;">
-										<img alt="" id="blah" style="width: 100%; height: 100%;" />
+									<span th:each="list,p:${movie}" th:if="${p.index lt 1}">
+										<img th:src="${list.movie_img}" alt="" id="blah" style="width: 100%; height: 100%;" />
+									</span>
 									</div>
 								</div>
 								<div class="col-md-5">
 
 
-									<form action="AddMovie" method="post" th:object="${movie}"
-										enctype="multipart/form-data">
-										<input type="hidden" th:text="${id}" th:field="*{movie_id}"/>
+									<form action="EditMovie" method="post"
+										enctype="multipart/form-data" th:each="list,p:${movie}" th:if="${p.index lt 1}">
+										<input type="hidden" name="id" th:value="${id}" />
 										<div class="row">
 											<div class="form-group col-md-7 col-md-offset-1">
 												<label>ชื่อหนัง</label> <input type="text"
-													class="form-control" name="namemovie" th:field="*{movie_name}"/>
+													class="form-control" th:value="${list.movie_name}" name="namemovie" />
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="form-group col-md-3 col-md-offset-1">
 												<label>ราคา</label> <input type="number"
-													class="form-control" name="pricemovie" th:field="*{movie_price}"/>
+													class="form-control" th:value="${list.movie_price}" name="pricemovie" />
 											</div>
 											<div class="form-group col-md-7 col-md-offset-1">
 												<label>ประเภทหนัง</label> <select
@@ -65,16 +67,22 @@
 											</div>
 										</div>
 										<div class="row">
+											<div class="form-group col-md-7 col-md-offset-1">
+												<label>ไม่ต้องการเปลี่ยนรูป</label> <input type="checkbox"
+													 th:value="${list.movie_img}" name="imgname"/>
+											</div>
+										</div>
+										<div class="row">
 											<div class="form-group col-md-11 col-md-offset-1">
 												<label>รายละเอียด</label>
-												<textarea rows="" class="form-control" name="descrip" th:field="*{movie_descrip}"></textarea>
+												<textarea rows="" class="form-control" name="descrip" th:text="${list.movie_detail}"></textarea>
 											</div>
 										</div>
 
 										<div class="row">
 											<div align="center">
 												<button type="submit" class="btn btn-info"
-													style="width: 150px;">เพิ่มหนัง</button>
+													style="width: 150px;">บันทึก</button>
 												<button type="button" class="btn btn-danger"
 													style="width: 150px;">ยกเลิก</button>
 											</div>

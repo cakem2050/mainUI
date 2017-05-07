@@ -24,4 +24,10 @@ public interface MovieRepository extends CrudRepository<Movie, Integer> {
 	@Query(value = "SELECT * FROM movie m, type t WHERE m.movie_id = ? ", nativeQuery = true)
 	List<Movie> getMovieEdit(Integer movie_id);
 	//List<Movie> findByMovie_id(int movie_id);
+	
+	@Query(value = "SELECT * FROM movie m, type t WHERE m.type_id = ? ", nativeQuery = true)
+	List<Movie> getMovieSearch(Integer movie_id);
+	
+	List<Movie> findByType_idContains(int type_id);
+
 }
