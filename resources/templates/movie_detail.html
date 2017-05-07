@@ -13,29 +13,34 @@
 			<!-- Pattern -->
 			<div class="mainmargin">
 				<!-- Start Row -->
-				<div class="row">
-					<!-- News -->
-					<div class="col-md-12">
-						<div class="thumbnail">
+				<div class="thumbnail">
+					<div class="row">
+						<!-- News -->
+						<div class="col-md-12">
 							<div class="col-md-6">
 								<div class="thumbnail">
-									<img alt="" th:src="${movie.movie_img}+.jpg" />
+									<img alt="" th:src="${movie.movie_img}" />
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="thumbnail">
 									<table class="table">
 										<tr>
-											<td align="right"><h4>ชื่อหนัง</h4></td><td><h4 th:text="${movie.movie_name}"></h4></td>
+											<td align="right"><h4>ชื่อหนัง</h4></td>
+											<td><h4 th:text="${movie.movie_name}"></h4></td>
 										</tr>
 										<tr>
-											<td align="right"><h4>ชื่อหนัง</h4></td><td><h4 th:text="${movie.movie_name}"></h4></td>
+											<td align="right"><h4>ราคา</h4></td>
+											<td><h4 th:text="${movie.movie_price}"></h4></td>
 										</tr>
 										<tr>
-											<td align="right"><h4>ชื่อหนัง</h4></td><td><h4 th:text="${movie.movie_name}"></h4></td>
+											<td align="right"><h4>รายละเอียด</h4></td>
+											<td><textarea class="form-control"
+													th:text="${movie.movie_detail}" disabled="disabled"></textarea></td>
 										</tr>
 										<tr>
-											<td align="right"><h4>ชื่อหนัง</h4></td><td><h4 th:text="${movie.movie_name}"></h4></td>
+											<td align="right"><h4>ประเภทหนัง</h4></td>
+											<td><h4 th:text="${movie.type_id}"></h4></td>
 										</tr>
 									</table>
 								</div>
@@ -43,6 +48,10 @@
 						</div>
 					</div>
 					<!-- End News -->
+				</div>
+				<div class="row">
+					<object style="width: 100%" height="600"
+						data="https://www.youtube.com/embed/rEpsPXUt4R0"> </object>
 				</div>
 				<!-- End Pattern -->
 			</div>

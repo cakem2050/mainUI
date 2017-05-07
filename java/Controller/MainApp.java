@@ -16,12 +16,4 @@ public class MainApp {
 	public static void main(String[] args) {
 		SpringApplication.run(MainApp.class, args);
 	}
-
-	/*@Bean
-	CommandLineRunner init(StorageService storageService) {
-		return (args) -> {
-			storageService.deleteAll();
-			storageService.init();
-		};
-	}*/
 }
